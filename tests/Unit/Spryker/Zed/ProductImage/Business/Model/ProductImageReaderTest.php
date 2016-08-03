@@ -7,11 +7,8 @@
 
 namespace Unit\Spryker\Zed\ProductImage\Business\Model;
 
-use Generated\Shared\Transfer\LocaleTransfer;
 use Generated\Shared\Transfer\ProductImageSetTransfer;
-use Generated\Shared\Transfer\ProductImageTransfer;
 use Spryker\Zed\Locale\Business\LocaleFacade;
-use Spryker\Zed\Locale\Business\LocaleFacadeInterface;
 use Spryker\Zed\ProductImage\Business\Model\Reader;
 use Spryker\Zed\ProductImage\Business\Transfer\ProductImageTransferGenerator;
 use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainer;
@@ -49,28 +46,14 @@ class ProductImageReaderTest extends Test
         );
 
         $this->localeFacade =  new LocaleFacade();
-
-        $this->transferGenerator = new ProductImageTransferGenerator(
-            $this->localeFacade
-        );
     }
 
-    public function testConvertProductImageSetEntitiesIntoTransfer()
+    public function testGetProductImagesByProductAbstractId()
     {
         $imageCollection = $this->reader
             ->getProductImagesByProductAbstractId(1);
 
-        $transferCollection = $this->transferGenerator->convertProductImageSetCollection($imageCollection);
-
-        foreach ($transferCollection as $transfer) {
-            $this->assertTrue(
-                ($transfer instanceof ProductImageSetTransfer)
-            );
-
-            $this->assertNotEmpty(
-                $transfer->getProductImages()
-            );
-        }
+        $this->assertNotEmpty($imageCollection);
     }
 
 }

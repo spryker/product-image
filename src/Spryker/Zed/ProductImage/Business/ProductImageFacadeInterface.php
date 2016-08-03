@@ -7,6 +7,28 @@
 
 namespace Spryker\Zed\ProductImage\Business;
 
+use Generated\Shared\Transfer\ProductImageSetTransfer;
+use Generated\Shared\Transfer\ProductImageTransfer;
+
 interface ProductImageFacadeInterface
 {
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\ProductImageTransfer $productImageTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductImageTransfer
+     */
+    public function persistProductImage(ProductImageTransfer $productImageTransfer);
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\ProductImageSetTransfer $productImageSetTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductImageSetTransfer
+     */
+    public function persistProductImageSet(ProductImageSetTransfer $productImageSetTransfer);
+
 }
