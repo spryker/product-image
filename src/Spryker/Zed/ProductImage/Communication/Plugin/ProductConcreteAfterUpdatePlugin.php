@@ -15,7 +15,7 @@ use Spryker\Zed\Product\Dependency\Plugin\ProductConcretePluginInterface;
  * @method \Spryker\Zed\ProductImage\Business\ProductImageFacade getFacade()
  * @method \Spryker\Zed\ProductImage\Communication\ProductImageCommunicationFactory getFactory()
  */
-class ProductConcreteCreatePlugin extends AbstractPlugin implements ProductConcretePluginInterface
+class ProductConcreteAfterUpdatePlugin extends AbstractPlugin implements ProductConcretePluginInterface
 {
 
     /**
@@ -25,7 +25,7 @@ class ProductConcreteCreatePlugin extends AbstractPlugin implements ProductConcr
      */
     public function run(ProductConcreteTransfer $productConcreteTransfer)
     {
-        return $this->getFacade()->createProductConcreteImageSetCollection($productConcreteTransfer);
+        return $this->getFacade()->updateProductConcreteImageSetCollection($productConcreteTransfer);
     }
 
 }
