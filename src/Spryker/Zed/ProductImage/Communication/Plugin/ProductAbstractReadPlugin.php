@@ -19,13 +19,13 @@ class ProductAbstractReadPlugin extends AbstractPlugin implements ProductAbstrac
 {
 
     /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productConcreteTransfer
+     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
      *
      * @return \Generated\Shared\Transfer\ProductAbstractTransfer
      */
-    public function run(ProductAbstractTransfer $productConcreteTransfer)
+    public function run(ProductAbstractTransfer $productAbstractTransfer)
     {
-        return $this->getFacade()->expandProductAbstractWithImageSets($productConcreteTransfer);
+        return $this->getFacade()->expandProductAbstractWithImageSets($productAbstractTransfer);
     }
 
 }
