@@ -68,9 +68,6 @@ class ProductImageDataHelper extends Module
             ->seed($productImageOverride + $productImageSeed)
             ->build();
 
-        $productImageTransfer->setExternalUrlLarge(static::URL_SMALL)
-            ->setExternalUrlSmall(static::URL_LARGE);
-
         $productImageSetSeed = [
             ProductImageSetTransfer::NAME => static::NAME,
             ProductImageSetTransfer::LOCALE => $this->getLocaleFacade()->getCurrentLocale(),
