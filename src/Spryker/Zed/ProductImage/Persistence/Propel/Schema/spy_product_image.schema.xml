@@ -41,7 +41,8 @@
         <column name="id_product_image" type="INTEGER" primaryKey="true" autoIncrement="true"/>
         <column name="external_url_small" type="VARCHAR" size="2048"/>
         <column name="external_url_large" type="VARCHAR" size="2048"/>
-        <column name="alt_text" type="VARCHAR" size="255" required="false"/>
+        <column name="alt_text_small" type="VARCHAR" size="255" required="false"/>
+        <column name="alt_text_large" type="VARCHAR" size="255" required="false"/>
 
         <behavior name="timestampable"/>
 
