@@ -49,6 +49,11 @@ class ProductImageDataHelper extends Module
     public const SORT_ORDER = 1;
 
     /**
+     * @var string
+     */
+    public const ALT_TEXT = 'alt text';
+
+    /**
      * @param array $productImageSetOverride
      * @param array $productImageOverride
      *
@@ -62,6 +67,7 @@ class ProductImageDataHelper extends Module
             ProductImageTransfer::EXTERNAL_URL_SMALL => static::URL_SMALL,
             ProductImageTransfer::EXTERNAL_URL_LARGE => static::URL_LARGE,
             ProductImageTransfer::SORT_ORDER => static::SORT_ORDER,
+            ProductImageTransfer::ALT_TEXT => static::ALT_TEXT,
         ];
 
         $productImageTransfer = (new ProductImageBuilder())
@@ -115,6 +121,7 @@ class ProductImageDataHelper extends Module
         $productImage
             ->setExternalUrlLarge(static::URL_LARGE)
             ->setExternalUrlSmall(static::URL_SMALL)
+            ->setAltText(static::ALT_TEXT)
             ->save();
 
         $productImageSetToProductImage = new SpyProductImageSetToProductImage();
