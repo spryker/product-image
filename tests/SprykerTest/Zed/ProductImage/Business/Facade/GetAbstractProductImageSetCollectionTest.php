@@ -44,6 +44,16 @@ class GetAbstractProductImageSetCollectionTest extends Unit
     /**
      * @var string
      */
+    protected const FAKE_ALT_TEXT_SMALL = 'fake-alt-text-small';
+
+    /**
+     * @var string
+     */
+    protected const FAKE_ALT_TEXT_LARGE = 'fake-alt-text-large';
+
+    /**
+     * @var string
+     */
     protected const FAKE_NAME_FOO = 'foo';
 
     /**
@@ -229,6 +239,8 @@ class GetAbstractProductImageSetCollectionTest extends Unit
                 (new ProductImageBuilder())->seed([
                     ProductImageTransfer::EXTERNAL_URL_LARGE => static::FAKE_LARGE_URL,
                     ProductImageTransfer::EXTERNAL_URL_SMALL => static::FAKE_SMALL_URL,
+                    ProductImageTransfer::ALT_TEXT_SMALL => static::FAKE_ALT_TEXT_SMALL,
+                    ProductImageTransfer::ALT_TEXT_LARGE => static::FAKE_ALT_TEXT_LARGE,
                 ])->build(),
             ],
         ]);
@@ -249,6 +261,8 @@ class GetAbstractProductImageSetCollectionTest extends Unit
 
         $this->assertSame(static::FAKE_LARGE_URL, $productImageTransfer->getExternalUrlLarge());
         $this->assertSame(static::FAKE_SMALL_URL, $productImageTransfer->getExternalUrlSmall());
+        $this->assertSame(static::FAKE_ALT_TEXT_SMALL, $productImageTransfer->getAltTextSmall());
+        $this->assertSame(static::FAKE_ALT_TEXT_LARGE, $productImageTransfer->getAltTextLarge());
     }
 
     /**

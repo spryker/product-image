@@ -306,6 +306,8 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
                 (new ProductImageBuilder())->seed([
                     ProductImageTransfer::EXTERNAL_URL_LARGE => 'fake-large-url',
                     ProductImageTransfer::EXTERNAL_URL_SMALL => 'fake-small-url',
+                    ProductImageTransfer::ALT_TEXT_SMALL => 'fake-small-alt-text',
+                    ProductImageTransfer::ALT_TEXT_LARGE => 'fake-large-alt-text',
                 ])->build(),
             ],
         ]);
@@ -326,6 +328,8 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
 
         $this->assertSame('fake-large-url', $productImageTransfer->getExternalUrlLarge());
         $this->assertSame('fake-small-url', $productImageTransfer->getExternalUrlSmall());
+        $this->assertSame('fake-small-alt-text', $productImageTransfer->getAltTextSmall());
+        $this->assertSame('fake-large-alt-text', $productImageTransfer->getAltTextLarge());
     }
 
     /**
@@ -341,6 +345,8 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
                 (new ProductImageBuilder())->seed([
                     ProductImageTransfer::EXTERNAL_URL_LARGE => 'fake-large-url',
                     ProductImageTransfer::EXTERNAL_URL_SMALL => 'fake-small-url',
+                    ProductImageTransfer::ALT_TEXT_SMALL => 'fake-small-alt-text',
+                    ProductImageTransfer::ALT_TEXT_LARGE => 'fake-large-alt-text',
                 ])->build(),
             ],
         ]);

@@ -31,7 +31,9 @@ class SaveProductImageTest extends AbstractProductImageFacadeTest
         // Arrange
         $productImageTransfer = (new ProductImageTransfer())
             ->setExternalUrlSmall(static::URL_SMALL)
-            ->setExternalUrlLarge(static::URL_LARGE);
+            ->setExternalUrlLarge(static::URL_LARGE)
+            ->setAltTextSmall(static::ALT_TEXT_SMALL)
+            ->setAltTextLarge(static::ALT_TEXT_LARGE);
 
         // Act
         $productImageTransfer = $this->productImageFacade->saveProductImage($productImageTransfer);
