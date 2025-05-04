@@ -35,7 +35,9 @@ class UpdateProductAbstractImageSetCollectionTest extends AbstractProductImageFa
         $productImageTransfer = (new ProductImageTransfer())
             ->setIdProductImage($this->image->getIdProductImage())
             ->setExternalUrlSmall(static::URL_SMALL . 'foo')
-            ->setExternalUrlLarge(static::URL_LARGE . 'foo');
+            ->setExternalUrlLarge(static::URL_LARGE . 'foo')
+            ->setAltTextSmall(static::ALT_TEXT_SMALL . 'foo')
+            ->setAltTextLarge(static::ALT_TEXT_LARGE . 'foo');
 
         $productImageSetTransfer = (new ProductImageSetTransfer())
             ->setIdProductImageSet($this->imageSetAbstract->getIdProductImageSet())
@@ -67,7 +69,9 @@ class UpdateProductAbstractImageSetCollectionTest extends AbstractProductImageFa
 
         $productImageTransfer = (new ProductImageTransfer())
             ->setExternalUrlSmall(static::URL_SMALL)
-            ->setExternalUrlLarge(static::URL_LARGE);
+            ->setExternalUrlLarge(static::URL_LARGE)
+            ->setAltTextSmall(static::ALT_TEXT_SMALL)
+            ->setAltTextLarge(static::ALT_TEXT_LARGE);
 
         $productImageSetTransfer = (new ProductImageSetTransfer())
             ->setName(static::SET_NAME)
@@ -101,7 +105,9 @@ class UpdateProductAbstractImageSetCollectionTest extends AbstractProductImageFa
 
         $productImageTransfer = (new ProductImageTransfer())
             ->setExternalUrlSmall(static::URL_SMALL)
-            ->setExternalUrlLarge(static::URL_LARGE);
+            ->setExternalUrlLarge(static::URL_LARGE)
+            ->setAltTextSmall(static::ALT_TEXT_SMALL)
+            ->setAltTextLarge(static::ALT_TEXT_LARGE);
 
         $productImageSetTransfer = (new ProductImageSetTransfer())
             ->setName(static::SET_NAME)
