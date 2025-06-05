@@ -75,7 +75,9 @@ class ProductImageWriterTest extends Unit
         $imageTransfer
             ->setSortOrder(11)
             ->setExternalUrlLarge('large')
-            ->setExternalUrlSmall('small');
+            ->setExternalUrlSmall('small')
+            ->setAltTextSmall('alt text small')
+            ->setAltTextLarge('alt text large');
 
         $imageTransfer = $this->writer
             ->saveProductImage($imageTransfer);
@@ -95,7 +97,9 @@ class ProductImageWriterTest extends Unit
         $imageTransfer
             ->setSortOrder(7)
             ->setExternalUrlLarge('large')
-            ->setExternalUrlSmall('small');
+            ->setExternalUrlSmall('small')
+            ->setAltTextSmall('alt text small')
+            ->setAltTextLarge('alt text large');
 
         $imageCollection = new ArrayObject([$imageTransfer]);
 

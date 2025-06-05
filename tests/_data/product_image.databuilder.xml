@@ -13,6 +13,8 @@
         <property name="sortOrder" dataBuilderRule="randomDigit()"/>
         <property name="externalUrlSmall" dataBuilderRule="imageUrl(640, 480)"/>
         <property name="externalUrlLarge" dataBuilderRule="imageUrl(640, 480)"/>
+        <property name="altTextSmall" dataBuilderRule="text(100)"/>
+        <property name="altTextLarge" dataBuilderRule="text(200)"/>
     </transfer>
 
 </transfers>

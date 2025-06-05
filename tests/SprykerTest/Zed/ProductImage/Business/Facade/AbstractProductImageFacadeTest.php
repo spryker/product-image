@@ -45,6 +45,16 @@ abstract class AbstractProductImageFacadeTest extends Unit
     /**
      * @var string
      */
+    protected const ALT_TEXT_SMALL = 'alt text small';
+
+    /**
+     * @var string
+     */
+    protected const ALT_TEXT_LARGE = 'alt text large';
+
+    /**
+     * @var string
+     */
     protected const SET_NAME = 'Default';
 
     /**
@@ -234,6 +244,8 @@ abstract class AbstractProductImageFacadeTest extends Unit
         $this->image
             ->setExternalUrlLarge(static::URL_LARGE)
             ->setExternalUrlSmall(static::URL_SMALL)
+            ->setAltTextSmall(static::ALT_TEXT_SMALL)
+            ->setAltTextLarge(static::ALT_TEXT_LARGE)
             ->save();
 
         $this->imageSetAbstract = new SpyProductImageSet();
