@@ -5,27 +5,26 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Zed\ProductImage;
+namespace Spryker\Client\ProductImage;
 
-use Spryker\Zed\Kernel\AbstractBundleConfig;
+use Spryker\Client\Kernel\AbstractClient;
 
 /**
- * @method \Spryker\Shared\ProductImage\ProductImageConfig getSharedConfig()
+ * @method \Spryker\Client\ProductImage\ProductImageFactory getFactory()
  */
-class ProductImageConfig extends AbstractBundleConfig
+class ProductImageClient extends AbstractClient implements ProductImageClientInterface
 {
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @deprecated This method will be removed in the next major version. Product image alternative text will be enabled by default.
-     *
-     * Specification:
-     * - Enable or disable product image alternative text feature.
      *
      * @return bool
      */
     public function isProductImageAlternativeTextEnabled(): bool
     {
-        return $this->getSharedConfig()->isProductImageAlternativeTextEnabled();
+        return $this->getFactory()->getConfig()->isProductImageAlternativeTextEnabled();
     }
 }
