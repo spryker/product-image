@@ -107,7 +107,7 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
     }
 
     /**
-     * @param list<int> $productSetIds
+     * @param array<int> $productSetIds
      *
      * @return array<int, list<\Generated\Shared\Transfer\ProductImageTransfer>>
      */
@@ -130,7 +130,7 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
     /**
      * @param \Propel\Runtime\Collection\Collection<\Orm\Zed\ProductImage\Persistence\SpyProductImageSetToProductImage> $productImageSetToProductImageEntities
      *
-     * @return array<array<\Generated\Shared\Transfer\ProductImageTransfer>>
+     * @return array<int, list<\Generated\Shared\Transfer\ProductImageTransfer>>
      */
     protected function indexProductImagesByProductImageSetId(Collection $productImageSetToProductImageEntities): array
     {

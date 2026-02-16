@@ -10,7 +10,7 @@ namespace Spryker\Zed\ProductImage\Business\Reader;
 interface GlossaryReaderInterface
 {
     /**
-     * @param array<int, list<string>> $glossaryKeysIndexedByIdLocale
+     * @param array<int, array<string>> $glossaryKeysIndexedByIdLocale
      * @param array<int, \Generated\Shared\Transfer\LocaleTransfer> $localeTransfersIndexedByIdLocale
      *
      * @return array<int, array<string, \Generated\Shared\Transfer\TranslationTransfer>>
@@ -21,7 +21,7 @@ interface GlossaryReaderInterface
     ): array;
 
     /**
-     * @param list<string> $glossaryKeys
+     * @param array<string> $glossaryKeys
      * @param string $localeName
      *
      * @return array<string, string|null>

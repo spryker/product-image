@@ -33,7 +33,7 @@ interface ProductImageRepositoryInterface
     public function getProductImagesSetTransfersByProductIdsAndIdLocale(array $productIds, int $idLocale): array;
 
     /**
-     * @param list<int> $productSetIds
+     * @param array<int> $productSetIds
      *
      * @return array<int, list<\Generated\Shared\Transfer\ProductImageTransfer>>
      */

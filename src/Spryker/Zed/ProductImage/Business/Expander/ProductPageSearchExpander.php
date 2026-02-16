@@ -51,10 +51,10 @@ class ProductPageSearchExpander implements ProductPageSearchExpanderInterface
     }
 
     /**
-     * @param list<array<string, mixed>> $productImages
+     * @param array<array<string, mixed>> $productImages
      * @param string $localeName
      *
-     * @return list<array<string, mixed>>
+     * @return array<array<string, mixed>>
      */
     protected function expandProductImagesWithProductImageAlternativeTexts(array $productImages, string $localeName): array
     {
@@ -75,9 +75,9 @@ class ProductPageSearchExpander implements ProductPageSearchExpanderInterface
     }
 
     /**
-     * @param list<array<string, mixed>> $productImages
+     * @param array<array<string, mixed>> $productImages
      *
-     * @return list<string>
+     * @return array<string>
      */
     protected function getGlossaryKeys(array $productImages): array
     {

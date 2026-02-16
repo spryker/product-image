@@ -20,7 +20,7 @@ class GlossaryReader implements GlossaryReaderInterface
     }
 
     /**
-     * @param array<int, list<string>> $glossaryKeysIndexedByIdLocale
+     * @param array<int, array<string>> $glossaryKeysIndexedByIdLocale
      * @param array<int, \Generated\Shared\Transfer\LocaleTransfer> $localeTransfersIndexedByIdLocale
      *
      * @return array<int, array<string, \Generated\Shared\Transfer\TranslationTransfer>>
@@ -38,7 +38,7 @@ class GlossaryReader implements GlossaryReaderInterface
     }
 
     /**
-     * @param list<string> $glossaryKeys
+     * @param array<string> $glossaryKeys
      * @param string $localeName
      *
      * @return array<string, string|null>
@@ -64,10 +64,10 @@ class GlossaryReader implements GlossaryReaderInterface
     }
 
     /**
-     * @param array<int, list<string>> $glossaryKeysIndexedByIdLocale
+     * @param array<int, array<string>> $glossaryKeysIndexedByIdLocale
      * @param array<int, \Generated\Shared\Transfer\LocaleTransfer> $localeTransfersIndexedByIdLocale
      *
-     * @return list<\Generated\Shared\Transfer\TranslationTransfer>
+     * @return array<\Generated\Shared\Transfer\TranslationTransfer>
      */
     protected function getTranslationTransfers(
         array $glossaryKeysIndexedByIdLocale,
@@ -84,7 +84,7 @@ class GlossaryReader implements GlossaryReaderInterface
     }
 
     /**
-     * @param list<\Generated\Shared\Transfer\TranslationTransfer> $translationTransfers
+     * @param array<\Generated\Shared\Transfer\TranslationTransfer> $translationTransfers
      *
      * @return array<int, array<string, \Generated\Shared\Transfer\TranslationTransfer>>
      */

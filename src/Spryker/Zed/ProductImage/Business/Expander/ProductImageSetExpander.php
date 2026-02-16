@@ -142,7 +142,7 @@ class ProductImageSetExpander implements ProductImageSetExpanderInterface
      * @param list<\Generated\Shared\Transfer\ProductImageSetTransfer> $productImageSetTransfers
      * @param array<int, \Generated\Shared\Transfer\LocaleTransfer> $localeTransfersIndexedByIdLocale
      *
-     * @return array<int, list<string>>
+     * @return array<int, array<string>>
      */
     protected function getGlossaryKeysIndexedByIdLocale(array $productImageSetTransfers, array $localeTransfersIndexedByIdLocale): array
     {
@@ -175,7 +175,7 @@ class ProductImageSetExpander implements ProductImageSetExpanderInterface
     /**
      * @param \ArrayObject<int, \Generated\Shared\Transfer\ProductImageTransfer> $productImageTransfers
      *
-     * @return list<string>
+     * @return array<string>
      */
     protected function getGlossarykeys(ArrayObject $productImageTransfers): array
     {
