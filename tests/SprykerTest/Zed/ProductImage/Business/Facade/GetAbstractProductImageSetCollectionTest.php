@@ -66,9 +66,6 @@ class GetAbstractProductImageSetCollectionTest extends Unit
      */
     protected ProductImageBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testGetAbstractProductImageSetCollectionRetrievesProductImageSets(): void
     {
         // Arrange
@@ -87,9 +84,6 @@ class GetAbstractProductImageSetCollectionTest extends Unit
         $this->assertCount(1, $productImageSetCollectionTransfer->getProductImageSets());
     }
 
-    /**
-     * @return void
-     */
     public function testGetAbstractProductImageSetCollectionRetrievesProductImageSetsFilteredByProductAbstractId(): void
     {
         // Arrange
@@ -120,9 +114,6 @@ class GetAbstractProductImageSetCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetAbstractProductImageSetCollectionRetrievesProductImageSetsFilteredByName(): void
     {
         // Arrange
@@ -155,9 +146,6 @@ class GetAbstractProductImageSetCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetAbstractProductImageSetCollectionRetrievesProductImageSetsFilteredByIdLocale(): void
     {
         // Arrange
@@ -189,9 +177,6 @@ class GetAbstractProductImageSetCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetAbstractProductImageSetCollectionShouldReturnProductImageSetsWithFallbackLocale(): void
     {
         // Arrange
@@ -216,9 +201,6 @@ class GetAbstractProductImageSetCollectionTest extends Unit
         $this->assertCount(1, $productImageSetCollectionTransfer->getProductImageSets());
     }
 
-    /**
-     * @return void
-     */
     public function testGetAbstractProductImageSetCollectionShouldReturnProductImageSetWithProductImages(): void
     {
         // Arrange
@@ -251,9 +233,6 @@ class GetAbstractProductImageSetCollectionTest extends Unit
         $this->assertSame(static::FAKE_SMALL_URL, $productImageTransfer->getExternalUrlSmall());
     }
 
-    /**
-     * @return void
-     */
     public function testGetAbstractProductImageSetCollectionShouldReturnSortedCollection(): void
     {
         // Arrange
@@ -288,9 +267,6 @@ class GetAbstractProductImageSetCollectionTest extends Unit
         $this->assertSame(static::FAKE_NAME_BAR, $productImageSetCollectionTransfer->getProductImageSets()->offsetGet(1)->getName());
     }
 
-    /**
-     * @return void
-     */
     public function testGetAbstractProductImageSetCollectionShouldReturnPaginatedCollectionByLimitAndOffset(): void
     {
         // Arrange
@@ -321,9 +297,6 @@ class GetAbstractProductImageSetCollectionTest extends Unit
         $this->assertCount(1, $productImageSetCollectionTransfer->getProductImageSets());
     }
 
-    /**
-     * @return void
-     */
     public function testGetAbstractProductImageSetCollectionShouldReturnPaginatedCollectionByPageAndMaxPerPage(): void
     {
         // Arrange

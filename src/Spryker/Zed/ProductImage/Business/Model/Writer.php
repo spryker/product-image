@@ -26,9 +26,6 @@ class Writer implements WriterInterface
      */
     protected $productImageQueryContainer;
 
-    /**
-     * @param \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface $productImageContainer
-     */
     public function __construct(ProductImageQueryContainerInterface $productImageContainer)
     {
         $this->productImageQueryContainer = $productImageContainer;
@@ -246,11 +243,6 @@ class Writer implements WriterInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageSetTransfer $productImageSetTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetTransfer
-     */
     protected function executeSaveProductImageSetTransaction(ProductImageSetTransfer $productImageSetTransfer): ProductImageSetTransfer
     {
         if ($productImageSetTransfer->getIdProductImageSet()) {

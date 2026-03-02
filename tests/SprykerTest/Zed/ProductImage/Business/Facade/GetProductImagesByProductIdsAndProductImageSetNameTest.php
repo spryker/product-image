@@ -20,9 +20,6 @@ namespace SprykerTest\Zed\ProductImage\Business\Facade;
  */
 class GetProductImagesByProductIdsAndProductImageSetNameTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testGetDefaultProductImagesByProductIdsReturnsImages(): void
     {
         // Arrange

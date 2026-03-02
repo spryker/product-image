@@ -24,9 +24,6 @@ use Generated\Shared\Transfer\ProductImageTransfer;
  */
 class UpdateProductAbstractImageSetCollectionTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testUpdateProductAbstractImageSetCollection(): void
     {
         // Arrange
@@ -54,9 +51,6 @@ class UpdateProductAbstractImageSetCollectionTest extends AbstractProductImageFa
         $this->assertAbstractCreateImageForImageSet();
     }
 
-    /**
-     * @return void
-     */
     public function testRemovalProductImageSetFromProductAbstract(): void
     {
         // Arrange, Act
@@ -90,9 +84,6 @@ class UpdateProductAbstractImageSetCollectionTest extends AbstractProductImageFa
         $this->assertAbstractHasNumberOfProductImageSet($productImageSetTransfers->count());
     }
 
-    /**
-     * @return void
-     */
     public function testRemovalProductImageFromProductAbstract(): void
     {
         // Arrange
@@ -124,11 +115,6 @@ class UpdateProductAbstractImageSetCollectionTest extends AbstractProductImageFa
         $this->assertAbstractHasNumberOfProductImage($productImageSetTransfers->count());
     }
 
-    /**
-     * @param int $expectedCount
-     *
-     * @return void
-     */
     protected function assertAbstractHasNumberOfProductImageSet(int $expectedCount): void
     {
         $imageSetCollection = $this->queryContainer->queryImageSetByProductAbstractId(
@@ -138,11 +124,6 @@ class UpdateProductAbstractImageSetCollectionTest extends AbstractProductImageFa
         $this->assertCount($expectedCount, $imageSetCollection);
     }
 
-    /**
-     * @param int $expectedCount
-     *
-     * @return void
-     */
     protected function assertAbstractHasNumberOfProductImage(int $expectedCount): void
     {
         $imageCollection = $this->queryContainer->queryImageCollectionByProductAbstractId(

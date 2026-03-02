@@ -23,9 +23,6 @@ use Generated\Shared\Transfer\ProductImageSetTransfer;
  */
 class GetProductConcreteIdsTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testGetProductConcreteIdsFilteredByProductImageIds(): void
     {
         // Arrange
@@ -47,9 +44,6 @@ class GetProductConcreteIdsTest extends AbstractProductImageFacadeTest
         $this->assertContains($productImageSetTransfer->getIdProduct(), $productConcreteIds);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductConcreteIdsFilteredByProductImageIdsWithEmptyResult(): void
     {
         // Arrange
@@ -67,9 +61,6 @@ class GetProductConcreteIdsTest extends AbstractProductImageFacadeTest
         $this->assertEmpty($productConcreteIds);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductConcreteIdsFilteredByProductImageSetIds(): void
     {
         // Arrange
@@ -91,9 +82,6 @@ class GetProductConcreteIdsTest extends AbstractProductImageFacadeTest
         $this->assertContains($productImageSetTransfer->getIdProduct(), $productConcreteIds);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductConcreteIdsFilteredByProductImageSetIdsWithEmptyResult(): void
     {
         // Arrange

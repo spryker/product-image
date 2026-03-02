@@ -22,10 +22,6 @@ class ProductImageBulkReader implements ProductImageBulkReaderInterface
      */
     protected $localeFacade;
 
-    /**
-     * @param \Spryker\Zed\ProductImage\Persistence\ProductImageRepositoryInterface $productImageRepository
-     * @param \Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToLocaleInterface $localeFacade
-     */
     public function __construct(ProductImageRepositoryInterface $productImageRepository, ProductImageToLocaleInterface $localeFacade)
     {
         $this->productImageRepository = $productImageRepository;

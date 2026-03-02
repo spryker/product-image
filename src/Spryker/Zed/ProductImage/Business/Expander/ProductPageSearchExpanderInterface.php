@@ -11,11 +11,6 @@ use Generated\Shared\Transfer\ProductPageSearchTransfer;
 
 interface ProductPageSearchExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductPageSearchTransfer $productPageSearchTransfer
-     *
-     * @return void
-     */
     public function expandProductPageSearchTransferWithProductImageAlternativeTexts(
         ProductPageSearchTransfer $productPageSearchTransfer
     ): void;

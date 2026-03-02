@@ -22,9 +22,6 @@ use Generated\Shared\Transfer\ProductImageTransfer;
  */
 class ExpandProductConcreteWithImageSetsTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testExpandProductConcreteWithImageSets(): void
     {
         // Arrange

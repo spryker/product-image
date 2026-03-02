@@ -52,9 +52,6 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Business\Reader\ProductImageBulkReaderInterface
-     */
     public function createProductImageBulkReader(): ProductImageBulkReaderInterface
     {
         return new ProductImageBulkReader($this->getRepository(), $this->getLocaleFacade());
@@ -92,17 +89,11 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Business\Resolver\ProductImageSetResolverInterface
-     */
     public function createProductImageSetResolver(): ProductImageSetResolverInterface
     {
         return new ProductImageSetResolver();
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Business\Reader\ProductImageSetReaderInterface
-     */
     public function createProductImageSetReader(): ProductImageSetReaderInterface
     {
         return new ProductImageSetReader(
@@ -110,9 +101,6 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Business\Expander\ProductImageSetExpanderInterface|null
-     */
     public function createProductImageSetExpander(): ?ProductImageSetExpanderInterface
     {
         if (!$this->getConfig()->isProductImageAlternativeTextEnabled()) {
@@ -126,9 +114,6 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Business\Reader\GlossaryReaderInterface|null
-     */
     public function createGlossaryReader(): ?GlossaryReaderInterface
     {
         if (!$this->getConfig()->isProductImageAlternativeTextEnabled()) {
@@ -140,9 +125,6 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Business\Expander\ProductConcretePageSearchExpanderInterface|null
-     */
     public function createProductConcretePageSearchExpander(): ?ProductConcretePageSearchExpanderInterface
     {
         if (!$this->getConfig()->isProductImageAlternativeTextEnabled()) {
@@ -154,9 +136,6 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Business\Expander\ProductPageSearchExpanderInterface|null
-     */
     public function createProductPageSearchExpander(): ?ProductPageSearchExpanderInterface
     {
         if (!$this->getConfig()->isProductImageAlternativeTextEnabled()) {
@@ -176,9 +155,6 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(ProductImageDependencyProvider::FACADE_LOCALE);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToGlossaryFacadeInterface
-     */
     public function getGlossaryFacade(): ProductImageToGlossaryFacadeInterface
     {
         $this->assertProductImageAlternativeTextEnabled();
@@ -186,9 +162,6 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(ProductImageDependencyProvider::FACADE_GLOSSARY);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToStoreFacadeInterface
-     */
     public function getStoreFacade(): ProductImageToStoreFacadeInterface
     {
         $this->assertProductImageAlternativeTextEnabled();

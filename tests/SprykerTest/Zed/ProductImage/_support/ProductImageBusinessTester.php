@@ -29,14 +29,6 @@ class ProductImageBusinessTester extends Actor
 {
     use _generated\ProductImageBusinessTesterActions;
 
-    /**
-     * @param string $name
-     * @param int|null $fkProductAbstract
-     * @param int|null $fkProduct
-     * @param int|null $fkLocale
-     *
-     * @return void
-     */
     public function createProductImageSet(string $name, ?int $fkProductAbstract, ?int $fkProduct, ?int $fkLocale): void
     {
         $imageSetConcrete = new SpyProductImageSet();
@@ -48,9 +40,6 @@ class ProductImageBusinessTester extends Actor
             ->save();
     }
 
-    /**
-     * @return bool
-     */
     public function isDynamicStoreEnabled(): bool
     {
         return (bool)getenv('SPRYKER_DYNAMIC_STORE_MODE');

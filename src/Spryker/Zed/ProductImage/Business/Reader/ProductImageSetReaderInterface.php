@@ -12,20 +12,10 @@ use Generated\Shared\Transfer\ProductImageSetCriteriaTransfer;
 
 interface ProductImageSetReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetCollectionTransfer
-     */
     public function getConcreteProductImageSetCollection(
         ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
     ): ProductImageSetCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetCollectionTransfer
-     */
     public function getAbstractProductImageSetCollection(
         ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
     ): ProductImageSetCollectionTransfer;

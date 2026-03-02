@@ -54,9 +54,6 @@ class ProductImageReaderTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -75,9 +72,6 @@ class ProductImageReaderTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesByProductAbstractId(): void
     {
         // Arrange

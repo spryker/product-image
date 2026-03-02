@@ -48,12 +48,6 @@ class ProductImageDataHelper extends Module
      */
     public const SORT_ORDER = 1;
 
-    /**
-     * @param array $productImageSetOverride
-     * @param array $productImageOverride
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetTransfer
-     */
     public function haveProductImageSet(array $productImageSetOverride = [], array $productImageOverride = []): ProductImageSetTransfer
     {
         $productImageFacade = $this->getProductImageFacade();
@@ -101,12 +95,6 @@ class ProductImageDataHelper extends Module
         return $productImageSetTransfer;
     }
 
-    /**
-     * @param int $idProductImageSet
-     * @param int $sortOrder
-     *
-     * @return \Orm\Zed\ProductImage\Persistence\SpyProductImageSetToProductImage
-     */
     public function createProductImageSetToProductImage(
         int $idProductImageSet,
         int $sortOrder
@@ -127,9 +115,6 @@ class ProductImageDataHelper extends Module
         return $productImageSetToProductImage;
     }
 
-    /**
-     * @return void
-     */
     public function ensureProductImageSetDatabaseTablesAreEmpty(): void
     {
         SpyProductImageSetToProductImageQuery::create()->deleteAll();
@@ -137,11 +122,6 @@ class ProductImageDataHelper extends Module
         SpyProductImageQuery::create()->deleteAll();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageSetTransfer $productImageSetTransfer
-     *
-     * @return void
-     */
     private function cleanupProductImageSet(ProductImageSetTransfer $productImageSetTransfer): void
     {
         $this->debug(
@@ -151,17 +131,11 @@ class ProductImageDataHelper extends Module
         $this->getProductImageFacade()->deleteProductImageSet($productImageSetTransfer);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Business\ProductImageFacadeInterface
-     */
     protected function getProductImageFacade(): ProductImageFacadeInterface
     {
         return $this->getLocator()->productImage()->facade();
     }
 
-    /**
-     * @return \Spryker\Zed\Locale\Business\LocaleFacadeInterface
-     */
     protected function getLocaleFacade(): LocaleFacadeInterface
     {
         return $this->getLocator()->locale()->facade();

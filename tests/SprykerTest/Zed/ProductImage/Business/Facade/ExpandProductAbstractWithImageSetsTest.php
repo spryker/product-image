@@ -22,9 +22,6 @@ use Generated\Shared\Transfer\ProductImageTransfer;
  */
 class ExpandProductAbstractWithImageSetsTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testExpandProductAbstractWithImageSets(): void
     {
         // Arrange

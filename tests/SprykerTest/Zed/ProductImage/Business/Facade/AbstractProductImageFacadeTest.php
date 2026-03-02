@@ -187,9 +187,6 @@ abstract class AbstractProductImageFacadeTest extends Unit
      */
     protected $image;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -203,9 +200,6 @@ abstract class AbstractProductImageFacadeTest extends Unit
         $this->tester->getContainer()->set(static::SERVICE_LOCALE, static::LOCALE_DE_DE);
     }
 
-    /**
-     * @return void
-     */
     protected function setupProducts(): void
     {
         $this->productAbstractEntity = new SpyProductAbstract();
@@ -235,9 +229,6 @@ abstract class AbstractProductImageFacadeTest extends Unit
             ->save();
     }
 
-    /**
-     * @return void
-     */
     protected function setupImages(): void
     {
         $this->image = new SpyProductImage();
@@ -319,9 +310,6 @@ abstract class AbstractProductImageFacadeTest extends Unit
             ->save();
     }
 
-    /**
-     * @return void
-     */
     protected function assertAbstractCreateImageForImageSet(): void
     {
         $imageCollection = $this->queryContainer->queryImageCollectionByProductAbstractId(
@@ -331,9 +319,6 @@ abstract class AbstractProductImageFacadeTest extends Unit
         $this->assertNotEmpty($imageCollection);
     }
 
-    /**
-     * @return void
-     */
     protected function assertConcreteCreateImageForImageSet(): void
     {
         $imageCollection = $this->queryContainer->queryImageCollectionByProductId(
@@ -343,9 +328,6 @@ abstract class AbstractProductImageFacadeTest extends Unit
         $this->assertNotEmpty($imageCollection);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\ProductAbstractTransfer
-     */
     protected function createProductAbstractTransfer(): ProductAbstractTransfer
     {
         $productData = $this->productAbstractEntity->toArray();
@@ -357,9 +339,6 @@ abstract class AbstractProductImageFacadeTest extends Unit
         return $productAbstractTransfer;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer
-     */
     protected function createProductConcreteTransfer(): ProductConcreteTransfer
     {
         $productData = $this->productConcreteEntity->toArray();

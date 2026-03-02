@@ -12,9 +12,6 @@ use Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToGlossaryFacadeInter
 
 class GlossaryReader implements GlossaryReaderInterface
 {
-    /**
-     * @param \Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToGlossaryFacadeInterface $glossaryFacade
-     */
     public function __construct(protected ProductImageToGlossaryFacadeInterface $glossaryFacade)
     {
     }

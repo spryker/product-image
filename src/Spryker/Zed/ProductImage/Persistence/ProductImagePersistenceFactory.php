@@ -45,17 +45,11 @@ class ProductImagePersistenceFactory extends AbstractPersistenceFactory
         return SpyProductImageQuery::create();
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Persistence\Propel\Mapper\ProductImageMapper
-     */
     public function createProductImageMapper(): ProductImageMapper
     {
         return new ProductImageMapper();
     }
 
-    /**
-     * @return \Spryker\Zed\ProductImage\Persistence\Propel\Mapper\ProductImageSetMapper
-     */
     public function createProductImageSetMapper(): ProductImageSetMapper
     {
         return new ProductImageSetMapper();

@@ -22,9 +22,6 @@ use Spryker\Shared\Kernel\Store;
  */
 class GetProductImagesSetCollectionByProductIdForCurrentLocaleTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductIdForCurrentLocale(): void
     {
         // Act
@@ -36,9 +33,6 @@ class GetProductImagesSetCollectionByProductIdForCurrentLocaleTest extends Abstr
         $this->assertNotEmpty($productImageSetCollection);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductIdForCurrentLocaleReturnsProductImagesSetWithProperLocale(): void
     {
         // Arrange
@@ -64,9 +58,6 @@ class GetProductImagesSetCollectionByProductIdForCurrentLocaleTest extends Abstr
         }
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductIdForCurrentLocaleReturnsDefaultProductImagesSets(): void
     {
         // Arrange

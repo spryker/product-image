@@ -46,9 +46,6 @@ class GetProductImagesSetCollectionByProductAbstractIdWithAlternatiiveTextsTest 
      */
     protected LocaleTransfer $localeTransferEn;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -57,9 +54,6 @@ class GetProductImagesSetCollectionByProductAbstractIdWithAlternatiiveTextsTest 
         $this->localeTransferEn = $this->tester->haveLocale([LocaleTransfer::LOCALE_NAME => static::LOCALE_NAME_EN]);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductAbstractIdWithLocalizedImageSet(): void
     {
         // Arrange
@@ -100,9 +94,6 @@ class GetProductImagesSetCollectionByProductAbstractIdWithAlternatiiveTextsTest 
         $this->assertSame($productImageTranslationTransfer->getAltTextLarge(), $largeAltTextTranslation);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductAbstractIdWithDefaultImageSet(): void
     {
         // Arrange
@@ -159,9 +150,6 @@ class GetProductImagesSetCollectionByProductAbstractIdWithAlternatiiveTextsTest 
         }
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductAbstractIdWithoutTranslations(): void
     {
         // Arrange
@@ -190,9 +178,6 @@ class GetProductImagesSetCollectionByProductAbstractIdWithAlternatiiveTextsTest 
         $this->assertEmpty($productImageTranslationTransfers);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductAbstractIdWithLocalizedImageSetWithDisabledConfig(): void
     {
         // Arrange

@@ -49,9 +49,6 @@ class ProductImageAlternativeTextProductConcretePageDataExpanderPluginTest exten
      */
     protected LocaleTransfer $localeTransfer;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -59,9 +56,6 @@ class ProductImageAlternativeTextProductConcretePageDataExpanderPluginTest exten
         $this->localeTransfer = $this->tester->haveLocale([LocaleTransfer::LOCALE_NAME => static::LOCALE_NAME]);
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductConcretePageSearchTransferWithProductImageAlternativeTextsWithEnabledConfig(): void
     {
         // Arrange
@@ -117,9 +111,6 @@ class ProductImageAlternativeTextProductConcretePageDataExpanderPluginTest exten
         );
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductConcretePageSearchTransferWithProductImageAlternativeTextsWithDisabledConfig(): void
     {
         // Arrange
@@ -175,9 +166,6 @@ class ProductImageAlternativeTextProductConcretePageDataExpanderPluginTest exten
         );
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductConcretePageSearchTransferWithProductImageAlternativeTextsWithoutTranslationsWithEnabledConfig(): void
     {
         // Arrange

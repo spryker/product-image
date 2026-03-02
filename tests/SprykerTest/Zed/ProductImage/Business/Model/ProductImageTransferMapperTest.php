@@ -54,9 +54,6 @@ class ProductImageTransferMapperTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -75,9 +72,6 @@ class ProductImageTransferMapperTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testConvertProductImageSetEntitiesIntoTransfer(): void
     {
         // Arrange

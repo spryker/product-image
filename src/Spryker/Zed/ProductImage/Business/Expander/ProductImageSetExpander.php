@@ -18,11 +18,6 @@ use Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToStoreFacadeInterfac
 
 class ProductImageSetExpander implements ProductImageSetExpanderInterface
 {
-    /**
-     * @param \Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToLocaleInterface $localeFacade
-     * @param \Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToStoreFacadeInterface $storeFacade
-     * @param \Spryker\Zed\ProductImage\Business\Reader\GlossaryReaderInterface $glossaryReader
-     */
     public function __construct(
         protected ProductImageToLocaleInterface $localeFacade,
         protected ProductImageToStoreFacadeInterface $storeFacade,
@@ -123,9 +118,6 @@ class ProductImageSetExpander implements ProductImageSetExpanderInterface
         return $localeTransfersIndexedByIdLocale;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\LocaleCriteriaTransfer
-     */
     protected function createLocaleCriteriaTransfer(): LocaleCriteriaTransfer
     {
         $storeTransfers = $this->storeFacade->getAllStores();

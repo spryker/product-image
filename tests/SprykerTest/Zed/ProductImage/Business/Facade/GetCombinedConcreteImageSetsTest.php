@@ -20,9 +20,6 @@ namespace SprykerTest\Zed\ProductImage\Business\Facade;
  */
 class GetCombinedConcreteImageSetsTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testGetCombinedConcreteImageSets(): void
     {
         // Arrange, Act

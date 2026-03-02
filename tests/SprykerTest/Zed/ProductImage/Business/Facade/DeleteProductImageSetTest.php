@@ -24,9 +24,6 @@ use Orm\Zed\ProductImage\Persistence\SpyProductImageSetQuery;
  */
 class DeleteProductImageSetTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testDeleteProductImageSet(): void
     {
         // Arrange
@@ -50,11 +47,6 @@ class DeleteProductImageSetTest extends AbstractProductImageFacadeTest
         $this->assertProductImageSetNotExists($imageSet->getIdProductImageSet());
     }
 
-    /**
-     * @param int $idProductImageSet
-     *
-     * @return void
-     */
     protected function assertProductImageSetNotExists(int $idProductImageSet): void
     {
         $exists = (new SpyProductImageSetQuery())

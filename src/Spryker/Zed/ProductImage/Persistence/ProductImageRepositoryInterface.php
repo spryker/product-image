@@ -59,20 +59,10 @@ interface ProductImageRepositoryInterface
      */
     public function getProductImageSetsGroupedByIdProduct(array $productIds): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetCollectionTransfer
-     */
     public function getConcreteProductImageSetCollection(
         ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
     ): ProductImageSetCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetCollectionTransfer
-     */
     public function getAbstractProductImageSetCollection(
         ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
     ): ProductImageSetCollectionTransfer;

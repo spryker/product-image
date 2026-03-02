@@ -23,9 +23,6 @@ use Orm\Zed\ProductImage\Persistence\SpyProductImageQuery;
  */
 class SaveProductImageTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testPersistProductImageShouldCreateImage(): void
     {
         // Arrange
@@ -40,11 +37,6 @@ class SaveProductImageTest extends AbstractProductImageFacadeTest
         $this->assertCreateImage($productImageTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageTransfer $productImageTransfer
-     *
-     * @return void
-     */
     protected function assertCreateImage(ProductImageTransfer $productImageTransfer): void
     {
         $productImage = (new SpyProductImageQuery())

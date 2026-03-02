@@ -22,9 +22,6 @@ use Orm\Zed\ProductImage\Persistence\SpyProductImageSet;
  */
 class FindProductImageSetByIdTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetById(): void
     {
         // Act
@@ -37,9 +34,6 @@ class FindProductImageSetByIdTest extends AbstractProductImageFacadeTest
         $this->assertCount(1, $productImageSetTransfer->getProductImages());
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetByIdWithoutImages(): void
     {
         // Arrange
@@ -61,9 +55,6 @@ class FindProductImageSetByIdTest extends AbstractProductImageFacadeTest
         $this->assertCount(0, $productImageSetTransfer->getProductImages());
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductImageSetByIdSortsImagesBySortOrderAsc(): void
     {
         // Arrange
@@ -85,9 +76,6 @@ class FindProductImageSetByIdTest extends AbstractProductImageFacadeTest
         }
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductImageSetByIdSortsImagesByidProductImageSetToProductImageAsc(): void
     {
         // Arrange

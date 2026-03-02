@@ -53,9 +53,6 @@ class ProductImageWriterTest extends Unit
      */
     protected $transferGenerator;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -66,9 +63,6 @@ class ProductImageWriterTest extends Unit
         $this->localeFacade = new LocaleFacade();
     }
 
-    /**
-     * @return void
-     */
     public function testPersistProductImage(): void
     {
         $imageTransfer = new ProductImageTransfer();
@@ -85,9 +79,6 @@ class ProductImageWriterTest extends Unit
         //$this->assertNotNull($imageTransfer->getIdProductImage());
     }
 
-    /**
-     * @return void
-     */
     public function testPersistProductImageSet(): void
     {
         $productAbstractTransfer = $this->tester->haveProductAbstract();

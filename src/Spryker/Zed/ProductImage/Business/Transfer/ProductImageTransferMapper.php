@@ -20,10 +20,6 @@ use Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToLocaleInterface;
 
 class ProductImageTransferMapper implements ProductImageTransferMapperInterface
 {
-    /**
-     * @param \Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToLocaleInterface $localeFacade
-     * @param \Spryker\Zed\ProductImage\Business\Expander\ProductImageSetExpanderInterface|null $productImageSetExpander
-     */
     public function __construct(
         protected ProductImageToLocaleInterface $localeFacade,
         protected ?ProductImageSetExpanderInterface $productImageSetExpander = null
@@ -158,9 +154,6 @@ class ProductImageTransferMapper implements ProductImageTransferMapperInterface
         $productImageSetTransfer->setProductImages(new ArrayObject($imageTransferCollection));
     }
 
-    /**
-     * @return \Propel\Runtime\ActiveQuery\Criteria
-     */
     protected function getProductImageSetToProductImageCriteria(): Criteria
     {
         $criteria = new Criteria();

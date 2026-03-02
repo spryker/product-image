@@ -19,19 +19,11 @@ class ProductImageSetReader implements ProductImageSetReaderInterface
      */
     protected ProductImageRepositoryInterface $productImageRepository;
 
-    /**
-     * @param \Spryker\Zed\ProductImage\Persistence\ProductImageRepositoryInterface $productImageRepository
-     */
     public function __construct(ProductImageRepositoryInterface $productImageRepository)
     {
         $this->productImageRepository = $productImageRepository;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetCollectionTransfer
-     */
     public function getConcreteProductImageSetCollection(
         ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
     ): ProductImageSetCollectionTransfer {
@@ -41,11 +33,6 @@ class ProductImageSetReader implements ProductImageSetReaderInterface
         return $this->expandProductImageSetWithProductImages($productImageSetCollectionTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetCollectionTransfer
-     */
     public function getAbstractProductImageSetCollection(
         ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
     ): ProductImageSetCollectionTransfer {
@@ -55,11 +42,6 @@ class ProductImageSetReader implements ProductImageSetReaderInterface
         return $this->expandProductImageSetWithProductImages($productImageSetCollectionTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductImageSetCollectionTransfer $productImageSetCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetCollectionTransfer
-     */
     protected function expandProductImageSetWithProductImages(
         ProductImageSetCollectionTransfer $productImageSetCollectionTransfer
     ): ProductImageSetCollectionTransfer {

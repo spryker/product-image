@@ -48,13 +48,6 @@ class Reader implements ReaderInterface
      */
     protected ?ProductImageSetExpanderInterface $productImageSetExpander;
 
-    /**
-     * @param \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface $productImageContainer
-     * @param \Spryker\Zed\ProductImage\Business\Transfer\ProductImageTransferMapperInterface $transferMapper
-     * @param \Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToLocaleInterface $localeFacade
-     * @param \Spryker\Zed\ProductImage\Persistence\ProductImageRepositoryInterface $productImageRepository
-     * @param \Spryker\Zed\ProductImage\Business\Expander\ProductImageSetExpanderInterface|null $productImageSetExpander
-     */
     public function __construct(
         ProductImageQueryContainerInterface $productImageContainer,
         ProductImageTransferMapperInterface $transferMapper,

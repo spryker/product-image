@@ -23,10 +23,6 @@ class ProductImageSetCombiner implements ProductImageSetCombinerInterface
      */
     protected $transferMapper;
 
-    /**
-     * @param \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface $productImageContainer
-     * @param \Spryker\Zed\ProductImage\Business\Transfer\ProductImageTransferMapperInterface $transferMapper
-     */
     public function __construct(
         ProductImageQueryContainerInterface $productImageContainer,
         ProductImageTransferMapperInterface $transferMapper

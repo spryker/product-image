@@ -24,9 +24,6 @@ use Generated\Shared\Transfer\ProductImageSetTransfer;
  */
 class MergeProductAbstractImageSetsIntoProductConcreteTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testMergeProductAbstractImageSetsIntoProductConcreteTakenFromProductAbstractIfEmpty(): void
     {
         // Arrange
@@ -45,9 +42,6 @@ class MergeProductAbstractImageSetsIntoProductConcreteTest extends AbstractProdu
         $this->assertEquals($productAbstractImageSet, $productConcreteResult->getImageSets()[0]->toArray());
     }
 
-    /**
-     * @return void
-     */
     public function testMergeProductAbstractImageSetsIntoProductConcreteNotTakenFromProductAbstractIfExist(): void
     {
         // Arrange

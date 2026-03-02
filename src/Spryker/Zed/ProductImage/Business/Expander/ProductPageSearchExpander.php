@@ -22,19 +22,11 @@ class ProductPageSearchExpander implements ProductPageSearchExpanderInterface
      */
     protected const KEY_ALT_TEXT_LARGE = 'alt_text_large';
 
-    /**
-     * @param \Spryker\Zed\ProductImage\Business\Reader\GlossaryReaderInterface|null $glossaryReader
-     */
     public function __construct(
         protected ?GlossaryReaderInterface $glossaryReader = null
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductPageSearchTransfer $productPageSearchTransfer
-     *
-     * @return void
-     */
     public function expandProductPageSearchTransferWithProductImageAlternativeTexts(
         ProductPageSearchTransfer $productPageSearchTransfer
     ): void {

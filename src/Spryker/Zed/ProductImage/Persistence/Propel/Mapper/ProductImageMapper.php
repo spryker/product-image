@@ -50,12 +50,6 @@ class ProductImageMapper
         return $productImageSetTransfers;
     }
 
-    /**
-     * @param \Orm\Zed\ProductImage\Persistence\SpyProductImageSet $productImageSetEntity
-     * @param \Generated\Shared\Transfer\ProductImageSetTransfer $productImageSetTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageSetTransfer
-     */
     public function mapProductImageSetEntityToProductImageSetTransfer(
         SpyProductImageSet $productImageSetEntity,
         ProductImageSetTransfer $productImageSetTransfer
@@ -66,12 +60,6 @@ class ProductImageMapper
         return $productImageSetTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\ProductImage\Persistence\SpyProductImage $productImageEntity
-     * @param \Generated\Shared\Transfer\ProductImageTransfer $productImageTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductImageTransfer
-     */
     public function mapProductImageEntityToProductImageTransfer(
         SpyProductImage $productImageEntity,
         ProductImageTransfer $productImageTransfer

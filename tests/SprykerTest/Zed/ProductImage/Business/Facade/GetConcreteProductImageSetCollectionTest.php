@@ -29,9 +29,6 @@ use Generated\Shared\Transfer\SortTransfer;
  */
 class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionRetrievesProductImageSets(): void
     {
         // Arrange
@@ -48,9 +45,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertNotEmpty($productImageSetCollectionTransfer->getProductImageSets());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionShouldNotReturnAbstractProductImageSets(): void
     {
         // Arrange
@@ -71,9 +65,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertEmpty($productImageSetCollectionTransfer->getProductImageSets());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionRetrievesProductImageSetsFilteredBySku(): void
     {
         // Arrange
@@ -94,9 +85,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertCount(1, $productImageSetCollectionTransfer->getProductImageSets());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionRetrievesProductImageSetsFilteredByLocaleName(): void
     {
         // Arrange
@@ -130,9 +118,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertCount(1, $productImageSetCollectionTransfer->getProductImageSets());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionRetrievesProductImageSetsFilteredByLocaleId(): void
     {
         // Arrange
@@ -170,9 +155,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionRetrievesProductImageSetsFilteredBySkuWithTwoProductImageSets(): void
     {
         // Arrange
@@ -200,9 +182,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertSame('default', $productImageSetCollectionTransfer->getProductImageSets()->offsetGet(1)->getName());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionRetrievesProductImageSetsFilteredBySkuWithTwoImagesInside(): void
     {
         // Arrange
@@ -228,9 +207,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertCount(2, $productImageSetCollectionTransfer->getProductImageSets()->getIterator()->current()->getProductImages());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionShouldReturnProductImageSetsWithFallbackLocale(): void
     {
         // Arrange
@@ -262,9 +238,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertCount(2, $productImageSetCollectionTransfer->getProductImageSets());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionShouldReturnProductImageSetWithIdProductAndSku(): void
     {
         // Arrange
@@ -293,9 +266,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertSame($productConcreteTransfer->getSku(), $productImageSetTransfer->getSku());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionShouldReturnProductImageSetWithProductImages(): void
     {
         // Arrange
@@ -328,9 +298,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertSame('fake-small-url', $productImageTransfer->getExternalUrlSmall());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionShouldReturnProductImageSetWithLocaleName(): void
     {
         // Arrange
@@ -359,9 +326,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertNotEmpty($productImageSetTransfer->getLocaleOrFail()->getLocaleName());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionShouldReturnSortedCollection(): void
     {
         // Arrange
@@ -396,9 +360,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertSame('bar', $productImageSetCollectionTransfer->getProductImageSets()->offsetGet(1)->getName());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionShouldReturnPaginatedCollectionByLimitAndOffset(): void
     {
         // Arrange
@@ -427,9 +388,6 @@ class GetConcreteProductImageSetCollectionTest extends AbstractProductImageFacad
         $this->assertCount(1, $productImageSetCollectionTransfer->getProductImageSets());
     }
 
-    /**
-     * @return void
-     */
     public function testGetConcreteProductImageSetCollectionShouldReturnPaginatedCollectionByPageAndMaxPerPage(): void
     {
         // Arrange

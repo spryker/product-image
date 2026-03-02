@@ -289,12 +289,6 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
             );
     }
 
-    /**
-     * @param \Orm\Zed\ProductImage\Persistence\SpyProductImageSetQuery $productImageSetQuery
-     * @param \Generated\Shared\Transfer\ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
-     *
-     * @return \Orm\Zed\ProductImage\Persistence\SpyProductImageSetQuery
-     */
     protected function applyConcreteProductImageSetCriteriaFilters(
         SpyProductImageSetQuery $productImageSetQuery,
         ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
@@ -337,12 +331,6 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
         return $productImageSetQuery;
     }
 
-    /**
-     * @param \Orm\Zed\ProductImage\Persistence\SpyProductImageSetQuery $productImageSetQuery
-     * @param \Generated\Shared\Transfer\ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
-     *
-     * @return \Orm\Zed\ProductImage\Persistence\SpyProductImageSetQuery
-     */
     protected function applyAbstractProductImageSetCriteriaFilters(
         SpyProductImageSetQuery $productImageSetQuery,
         ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
@@ -390,12 +378,6 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
         return $productImageSetQuery;
     }
 
-    /**
-     * @param \Orm\Zed\ProductImage\Persistence\SpyProductImageSetQuery $productImageSetQuery
-     * @param \Generated\Shared\Transfer\PaginationTransfer $paginationTransfer
-     *
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
-     */
     protected function applyProductImageSetPagination(
         SpyProductImageSetQuery $productImageSetQuery,
         PaginationTransfer $paginationTransfer
@@ -429,12 +411,6 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
         return $productImageSetQuery;
     }
 
-    /**
-     * @param \Orm\Zed\ProductImage\Persistence\SpyProductImageSetQuery $productImageSetQuery
-     * @param \Generated\Shared\Transfer\ProductImageSetConditionsTransfer $productImageSetConditionsTransfer
-     *
-     * @return \Orm\Zed\ProductImage\Persistence\SpyProductImageSetQuery
-     */
     protected function addFallbackLocaleCondition(
         SpyProductImageSetQuery $productImageSetQuery,
         ProductImageSetConditionsTransfer $productImageSetConditionsTransfer

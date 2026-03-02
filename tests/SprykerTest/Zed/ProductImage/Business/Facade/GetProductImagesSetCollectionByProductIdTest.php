@@ -20,9 +20,6 @@ namespace SprykerTest\Zed\ProductImage\Business\Facade;
  */
 class GetProductImagesSetCollectionByProductIdTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductId(): void
     {
         // Act
@@ -34,9 +31,6 @@ class GetProductImagesSetCollectionByProductIdTest extends AbstractProductImageF
         $this->assertNotEmpty($productImageSetCollection);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductIdSortsImagesBySortOrderAsc(): void
     {
         // Arrange
@@ -58,9 +52,6 @@ class GetProductImagesSetCollectionByProductIdTest extends AbstractProductImageF
         }
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductImagesSetCollectionByProductIdSortsImagesByIdProductImageSetToProductImageAsc(): void
     {
         // Arrange

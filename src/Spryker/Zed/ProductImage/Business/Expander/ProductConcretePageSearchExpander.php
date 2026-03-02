@@ -13,19 +13,11 @@ use Spryker\Zed\ProductImage\Business\Reader\GlossaryReaderInterface;
 
 class ProductConcretePageSearchExpander implements ProductConcretePageSearchExpanderInterface
 {
-    /**
-     * @param \Spryker\Zed\ProductImage\Business\Reader\GlossaryReaderInterface|null $glossaryReader
-     */
     public function __construct(
         protected ?GlossaryReaderInterface $glossaryReader = null
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcretePageSearchTransfer $productConcretePageSearchTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcretePageSearchTransfer
-     */
     public function expandProductConcretePageSearchTransferWithProductImageAlternativeTexts(
         ProductConcretePageSearchTransfer $productConcretePageSearchTransfer
     ): ProductConcretePageSearchTransfer {

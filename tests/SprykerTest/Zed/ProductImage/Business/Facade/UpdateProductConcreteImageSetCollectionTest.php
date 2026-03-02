@@ -24,9 +24,6 @@ use Generated\Shared\Transfer\ProductImageTransfer;
  */
 class UpdateProductConcreteImageSetCollectionTest extends AbstractProductImageFacadeTest
 {
-    /**
-     * @return void
-     */
     public function testUpdateProductConcreteImageSetCollection(): void
     {
         $productConcreteTransfer = $this->createProductConcreteTransfer();
@@ -51,9 +48,6 @@ class UpdateProductConcreteImageSetCollectionTest extends AbstractProductImageFa
         $this->assertConcreteCreateImageForImageSet();
     }
 
-    /**
-     * @return void
-     */
     public function testRemovalProductImageSetFromProductConcrete(): void
     {
         $productConcreteTransfer = $this->createProductConcreteTransfer();
@@ -85,9 +79,6 @@ class UpdateProductConcreteImageSetCollectionTest extends AbstractProductImageFa
         $this->assertConcreteHasNumberOfProductImageSet($productImageSetTransfers->count());
     }
 
-    /**
-     * @return void
-     */
     public function testRemovalProductImageFromProductConcrete(): void
     {
         $productConcreteTransfer = $this->createProductConcreteTransfer();
@@ -115,11 +106,6 @@ class UpdateProductConcreteImageSetCollectionTest extends AbstractProductImageFa
         $this->assertConcreteHasNumberOfProductImage($productImageSetTransfers->count());
     }
 
-    /**
-     * @param int $expectedCount
-     *
-     * @return void
-     */
     protected function assertConcreteHasNumberOfProductImageSet(int $expectedCount): void
     {
         $imageSetCollection = $this->queryContainer->queryImageSetByProductId(
@@ -129,11 +115,6 @@ class UpdateProductConcreteImageSetCollectionTest extends AbstractProductImageFa
         $this->assertCount($expectedCount, $imageSetCollection);
     }
 
-    /**
-     * @param int $expectedCount
-     *
-     * @return void
-     */
     protected function assertConcreteHasNumberOfProductImage(int $expectedCount): void
     {
         $imageCollection = $this->queryContainer->queryImageCollectionByProductId(
