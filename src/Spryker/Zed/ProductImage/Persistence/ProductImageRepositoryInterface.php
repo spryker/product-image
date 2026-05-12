@@ -26,6 +26,13 @@ interface ProductImageRepositoryInterface
 
     /**
      * @param array<int> $productIds
+     *
+     * @return array<int, array<\Generated\Shared\Transfer\ProductImageSetTransfer>>
+     */
+    public function getProductImageSetsWithProductImagesAndLocaleIndexedByProductId(array $productIds): array;
+
+    /**
+     * @param array<int> $productIds
      * @param int $idLocale
      *
      * @return array<\Generated\Shared\Transfer\ProductImageSetTransfer>

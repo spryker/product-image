@@ -15,7 +15,9 @@ use Generated\Shared\Transfer\KeyTranslationTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Generated\Shared\Transfer\ProductConcreteTransfer;
 use Generated\Shared\Transfer\ProductImageTransfer;
+use ReflectionClass;
 use Spryker\Zed\ProductImage\Business\ProductImageBusinessFactory;
+use Spryker\Zed\ProductImage\Business\Reader\GlossaryReader;
 use Spryker\Zed\ProductImage\Communication\Plugin\ProductPageSearch\ProductImageAlternativeTextProductConcretePageDataExpanderPlugin;
 use Spryker\Zed\ProductImage\ProductImageConfig;
 use SprykerTest\Zed\ProductImage\ProductImageCommunicationTester;
@@ -52,6 +54,8 @@ class ProductImageAlternativeTextProductConcretePageDataExpanderPluginTest exten
     public function setUp(): void
     {
         parent::setUp();
+
+        $this->clearGlossaryReaderCache();
 
         $this->localeTransfer = $this->tester->haveLocale([LocaleTransfer::LOCALE_NAME => static::LOCALE_NAME]);
     }
@@ -205,5 +209,12 @@ class ProductImageAlternativeTextProductConcretePageDataExpanderPluginTest exten
             null,
             $productConcretePageSearchTransfer->getImages()[0][ProductImageTransfer::ALT_TEXT_LARGE],
         );
+    }
+
+    public function clearGlossaryReaderCache(): void
+    {
+        $reflection = new ReflectionClass(GlossaryReader::class);
+        $cacheProperty = $reflection->getProperty('localeCache');
+        $cacheProperty->setValue(null, []);
     }
 }

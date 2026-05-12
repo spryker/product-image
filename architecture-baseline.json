@@ -1,20 +1,6 @@
 [
     {
         "fileName": "src/Spryker/Zed/ProductImage/Business/ProductImageBusinessFactory.php",
-        "description": "Factories: The factory method `Spryker\\Zed\\ProductImage\\Business\\ProductImageBusinessFactory::getGlossaryFacade()()` contains 1 new statements which violates rule \"A `get*()` method in factories must not contain a `new` keyword.\"",
-        "rule": "FactoryGetContainNoNewRule",
-        "ruleset": "Spryker",
-        "priority": "1"
-    },
-    {
-        "fileName": "src/Spryker/Zed/ProductImage/Business/ProductImageBusinessFactory.php",
-        "description": "Factories: The factory method `Spryker\\Zed\\ProductImage\\Business\\ProductImageBusinessFactory::getStoreFacade()()` contains 1 new statements which violates rule \"A `get*()` method in factories must not contain a `new` keyword.\"",
-        "rule": "FactoryGetContainNoNewRule",
-        "ruleset": "Spryker",
-        "priority": "1"
-    },
-    {
-        "fileName": "src/Spryker/Zed/ProductImage/Business/ProductImageBusinessFactory.php",
         "description": "Factories: The factory method `assertProductImageAlternativeTextEnabled()` violates rule \"Factories should only contain get*() and create*() methods.\"",
         "rule": "FactoryOnlyGetAndCreateRule",
         "ruleset": "Spryker",
@@ -93,13 +79,6 @@
     {
         "fileName": "src/Spryker/Zed/ProductImage/Dependency/Facade/ProductImageToLocaleInterface.php",
         "description": "Bridges: The bridge interface has incorrect method signature for `getAvailableLocales()`. Missed return type. That violates the rule \"All bridge interface methods must have exactly the same or more strict signature as their parent\"",
-        "rule": "BridgeMethodsInterfaceRule",
-        "ruleset": "Spryker",
-        "priority": "2"
-    },
-    {
-        "fileName": "src/Spryker/Zed/ProductImage/Dependency/Facade/ProductImageToLocaleInterface.php",
-        "description": "Bridges: The bridge interface has incorrect method signature for `getLocaleCollection()`. Missed return type. That violates the rule \"All bridge interface methods must have exactly the same or more strict signature as their parent\"",
         "rule": "BridgeMethodsInterfaceRule",
         "ruleset": "Spryker",
         "priority": "2"

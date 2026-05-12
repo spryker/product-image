@@ -65,6 +65,43 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
 
     /**
      * @param array<int> $productIds
+     *
+     * @return array<int, array<\Generated\Shared\Transfer\ProductImageSetTransfer>>
+     */
+    public function getProductImageSetsWithProductImagesAndLocaleIndexedByProductId(array $productIds): array
+    {
+        $productImageSetDataCollection = $this->getFactory()
+            ->createProductImageSetQuery()
+            ->leftJoinWithSpyProductImageSetToProductImage()
+            ->leftJoinWithSpyLocale()
+            ->filterByFkProduct_In($productIds)
+            ->orderByIdProductImageSet()
+            ->useSpyProductImageSetToProductImageQuery()
+                ->leftJoinWithSpyProductImage()
+                ->orderBySortOrder()
+                ->orderByIdProductImageSetToProductImage()
+            ->endUse()
+            ->setFormatter(ArrayFormatter::class)
+            ->find()
+            ->getArrayCopy();
+
+        $productImageMapper = $this->getFactory()->createProductImageMapper();
+        $result = array_fill_keys($productIds, []);
+        $groupedData = [];
+
+        foreach ($productImageSetDataCollection as $row) {
+            $groupedData[$row['fk_product']][] = $row;
+        }
+
+        foreach ($groupedData as $idProduct => $rows) {
+            $result[$idProduct] = $productImageMapper->mapProductImageDataCollectionToProductImageTransfers($rows);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param array<int> $productIds
      * @param int $idLocale
      *
      * @return array<\Generated\Shared\Transfer\ProductImageSetTransfer>

@@ -13,7 +13,9 @@ use Codeception\Test\Unit;
 use Generated\Shared\DataBuilder\ProductPageSearchBuilder;
 use Generated\Shared\Transfer\KeyTranslationTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
+use ReflectionClass;
 use Spryker\Zed\ProductImage\Business\ProductImageBusinessFactory;
+use Spryker\Zed\ProductImage\Business\Reader\GlossaryReader;
 use Spryker\Zed\ProductImage\Communication\Plugin\ProductPageSearch\ProductImageAlternativeTextProductPageDataExpanderPlugin;
 use Spryker\Zed\ProductImage\ProductImageConfig;
 use SprykerTest\Zed\ProductImage\ProductImageCommunicationTester;
@@ -60,6 +62,7 @@ class ProductImageAlternativeTextProductPageDataExpanderPluginTest extends Unit
     public function setUp(): void
     {
         parent::setUp();
+        $this->clearReaderCache();
 
         $this->localeTransfer = $this->tester->haveLocale([LocaleTransfer::LOCALE_NAME => static::LOCALE_NAME]);
     }
@@ -213,5 +216,11 @@ class ProductImageAlternativeTextProductPageDataExpanderPluginTest extends Unit
             null,
             $productAbstractPageSearchTransfer->getProductImages()[0][static::KEY_ALT_TEXT_LARGE],
         );
+    }
+
+    protected function clearReaderCache(): void
+    {
+        $reflection = new ReflectionClass(GlossaryReader::class);
+        $reflection->getProperty('localeCache')->setValue(null, []);
     }
 }

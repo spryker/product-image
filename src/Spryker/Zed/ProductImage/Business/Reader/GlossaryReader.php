@@ -12,6 +12,11 @@ use Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToGlossaryFacadeInter
 
 class GlossaryReader implements GlossaryReaderInterface
 {
+    /**
+     * @var array<string, array<string, string|null>>
+     */
+    protected static array $localeCache = [];
+
     public function __construct(protected ProductImageToGlossaryFacadeInterface $glossaryFacade)
     {
     }
@@ -42,19 +47,36 @@ class GlossaryReader implements GlossaryReaderInterface
      */
     public function getTranslationsIndexedByGlossaryKey(array $glossaryKeys, string $localeName): array
     {
-        $translationTransfers = $this->glossaryFacade->getTranslationsByGlossaryKeysAndLocaleTransfers(
+        $uncachedKeys = array_values(array_filter(
             $glossaryKeys,
-            [(new LocaleTransfer())->setLocaleName($localeName)],
-        );
+            fn (string $key) => !array_key_exists($key, static::$localeCache[$localeName] ?? []),
+        ));
+
+        if ($uncachedKeys !== []) {
+            foreach ($uncachedKeys as $key) {
+                static::$localeCache[$localeName][$key] = null;
+            }
+
+            $translationTransfers = $this->glossaryFacade->getTranslationsByGlossaryKeysAndLocaleTransfers(
+                $uncachedKeys,
+                [(new LocaleTransfer())->setLocaleName($localeName)],
+            );
+
+            foreach ($translationTransfers as $translationTransfer) {
+                if (!$translationTransfer->getIsActive()) {
+                    continue;
+                }
+
+                static::$localeCache[$localeName][$translationTransfer->getGlossaryKeyOrFail()->getKey()] = $translationTransfer->getValue();
+            }
+        }
 
         $translationsIndexedByGlossaryKey = [];
 
-        foreach ($translationTransfers as $translationTransfer) {
-            if (!$translationTransfer->getIsActive()) {
-                continue;
+        foreach ($glossaryKeys as $key) {
+            if (static::$localeCache[$localeName][$key] !== null) {
+                $translationsIndexedByGlossaryKey[$key] = static::$localeCache[$localeName][$key];
             }
-
-            $translationsIndexedByGlossaryKey[$translationTransfer->getGlossaryKeyOrFail()->getKey()] = $translationTransfer->getValue();
         }
 
         return $translationsIndexedByGlossaryKey;

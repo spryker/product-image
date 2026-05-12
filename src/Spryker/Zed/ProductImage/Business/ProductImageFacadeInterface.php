@@ -83,6 +83,18 @@ interface ProductImageFacadeInterface
 
     /**
      * Specification:
+     * - Returns all product image sets from database for the given concrete product ids, indexed by product id.
+     *
+     * @api
+     *
+     * @param array<int> $productIds
+     *
+     * @return array<int, array<\Generated\Shared\Transfer\ProductImageSetTransfer>>
+     */
+    public function getProductImagesSetCollectionIndexedByProductId(array $productIds): array;
+
+    /**
+     * Specification:
      * - Persists all provided image sets to database for the given abstract product.
      * - Returns ProductAbstractTransfer along with the data from the persisted ProductImageSetTransfers.
      *
