@@ -12,11 +12,15 @@ use Spryker\Shared\Kernel\AbstractBundleConfig;
 class ProductImageConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @var string
      */
     public const DEFAULT_IMAGE_SET_NAME = 'default';
 
     /**
+     * @api
+     *
      * @var string
      */
     public const PLUGIN_PRODUCT_IMAGE_ALTERNATIVE_TEXT_DATA = 'PLUGIN_PRODUCT_IMAGE_ALTERNATIVE_TEXT_DATA';
