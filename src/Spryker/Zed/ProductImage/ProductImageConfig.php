@@ -28,4 +28,17 @@ class ProductImageConfig extends AbstractBundleConfig
     {
         return $this->getSharedConfig()->isProductImageAlternativeTextEnabled();
     }
+
+    /**
+     * Specification:
+     * - Enables the optional `uuid` column on the `spy_product_image_set` table.
+     * - When enabled, the `ProductImageSetUuid` schema folder is merged during `propel:install`.
+     * - Consumers relying on product image set UUID (e.g. backend API image set identifiers) require this to be enabled.
+     *
+     * @api
+     */
+    public function isProductImageSetUuidEnabled(): bool
+    {
+        return false;
+    }
 }

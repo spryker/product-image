@@ -66,6 +66,15 @@ interface ProductImageRepositoryInterface
      */
     public function getProductImageSetsGroupedByIdProduct(array $productIds): array;
 
+    /**
+     * @param array<int> $productIds
+     *
+     * @return array<int, list<string>>
+     */
+    public function getProductImageSetUuidsGroupedByIdProduct(array $productIds): array;
+
+    public function isProductImageSetUuidSupported(): bool;
+
     public function getConcreteProductImageSetCollection(
         ProductImageSetCriteriaTransfer $productImageSetCriteriaTransfer
     ): ProductImageSetCollectionTransfer;

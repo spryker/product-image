@@ -13,6 +13,7 @@ use Generated\Shared\Transfer\ProductImageSetTransfer;
 use Generated\Shared\Transfer\ProductImageTransfer;
 use Spryker\Zed\Locale\Business\LocaleFacade;
 use Spryker\Zed\ProductImage\Business\Model\Writer;
+use Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToLocaleBridge;
 use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainer;
 
 /**
@@ -56,11 +57,11 @@ class ProductImageWriterTest extends Unit
     protected function setUp(): void
     {
         parent::setUp();
+        $this->localeFacade = new LocaleFacade();
         $this->writer = new Writer(
             new ProductImageQueryContainer(),
+            new ProductImageToLocaleBridge($this->localeFacade),
         );
-
-        $this->localeFacade = new LocaleFacade();
     }
 
     public function testPersistProductImage(): void

@@ -1,0 +1,140 @@
+<?php
+
+/**
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
+namespace SprykerTest\Zed\ProductImage\Business\Plugin\Product;
+
+use Codeception\Test\Unit;
+use Generated\Shared\Transfer\ProductConcreteCollectionRequestTransfer;
+use Generated\Shared\Transfer\ProductConcreteCollectionResponseTransfer;
+use Generated\Shared\Transfer\ProductConcreteTransfer;
+use Generated\Shared\Transfer\ProductImageSetTransfer;
+use Orm\Zed\ProductImage\Persistence\SpyProductImageSetQuery;
+use Spryker\Zed\ProductImage\Communication\Plugin\Product\ProductImageSetExistsProductConcreteCollectionCreateValidatorPlugin;
+use SprykerTest\Zed\ProductImage\ProductImageBusinessTester;
+
+/**
+ * Auto-generated group annotations
+ *
+ * @group SprykerTest
+ * @group Zed
+ * @group ProductImage
+ * @group Business
+ * @group Plugin
+ * @group Product
+ * @group ProductImageSetExistsProductConcreteCollectionCreateValidatorPluginTest
+ *
+ * Add your own group annotations below this line
+ */
+class ProductImageSetExistsProductConcreteCollectionCreateValidatorPluginTest extends Unit
+{
+    protected const string UNKNOWN_UUID = '00000000-0000-0000-0000-000000000000';
+
+    protected const string PRODUCT_SKU = 'concrete-sku';
+
+    protected ProductImageBusinessTester $tester;
+
+    public function testValidateReturnsErrorWhenImageSetUuidDoesNotExist(): void
+    {
+        // Arrange
+        $productConcreteCollectionRequestTransfer = $this->createRequestWithImageSetUuid(static::UNKNOWN_UUID, null);
+
+        // Act
+        $productConcreteCollectionResponseTransfer = (new ProductImageSetExistsProductConcreteCollectionCreateValidatorPlugin())
+            ->validate($productConcreteCollectionRequestTransfer, new ProductConcreteCollectionResponseTransfer());
+
+        // Assert
+        $this->assertCount(1, $productConcreteCollectionResponseTransfer->getErrors());
+        $this->assertSame(
+            static::PRODUCT_SKU,
+            $productConcreteCollectionResponseTransfer->getErrors()->offsetGet(0)->getEntityIdentifier(),
+        );
+    }
+
+    public function testValidatePassesWhenImageSetUuidBelongsToTheProduct(): void
+    {
+        // Arrange
+        $productConcreteTransfer = $this->tester->haveProduct();
+        $productImageSetTransfer = $this->tester->haveProductImageSet([
+            ProductImageSetTransfer::ID_PRODUCT => $productConcreteTransfer->getIdProductConcrete(),
+        ]);
+
+        $productConcreteCollectionRequestTransfer = $this->createRequestWithImageSetUuid(
+            $this->findProductImageSetUuid($productImageSetTransfer),
+            $productConcreteTransfer->getIdProductConcrete(),
+        );
+
+        // Act
+        $productConcreteCollectionResponseTransfer = (new ProductImageSetExistsProductConcreteCollectionCreateValidatorPlugin())
+            ->validate($productConcreteCollectionRequestTransfer, new ProductConcreteCollectionResponseTransfer());
+
+        // Assert
+        $this->assertCount(0, $productConcreteCollectionResponseTransfer->getErrors());
+    }
+
+    public function testValidateReturnsErrorWhenImageSetUuidBelongsToAnotherProduct(): void
+    {
+        // Arrange
+        $productConcreteTransfer = $this->tester->haveProduct();
+        $otherProductConcreteTransfer = $this->tester->haveProduct();
+        $productImageSetTransfer = $this->tester->haveProductImageSet([
+            ProductImageSetTransfer::ID_PRODUCT => $otherProductConcreteTransfer->getIdProductConcrete(),
+        ]);
+
+        $productConcreteCollectionRequestTransfer = $this->createRequestWithImageSetUuid(
+            $this->findProductImageSetUuid($productImageSetTransfer),
+            $productConcreteTransfer->getIdProductConcrete(),
+        );
+
+        // Act
+        $productConcreteCollectionResponseTransfer = (new ProductImageSetExistsProductConcreteCollectionCreateValidatorPlugin())
+            ->validate($productConcreteCollectionRequestTransfer, new ProductConcreteCollectionResponseTransfer());
+
+        // Assert
+        $this->assertCount(1, $productConcreteCollectionResponseTransfer->getErrors());
+    }
+
+    public function testValidatePassesWhenNoImageSetUuidsProvided(): void
+    {
+        // Arrange
+        $productConcreteCollectionRequestTransfer = (new ProductConcreteCollectionRequestTransfer())
+            ->addProduct(
+                (new ProductConcreteTransfer())
+                    ->setSku(static::PRODUCT_SKU)
+                    ->addImageSet((new ProductImageSetTransfer())->setName('default')),
+            );
+
+        // Act
+        $productConcreteCollectionResponseTransfer = (new ProductImageSetExistsProductConcreteCollectionCreateValidatorPlugin())
+            ->validate($productConcreteCollectionRequestTransfer, new ProductConcreteCollectionResponseTransfer());
+
+        // Assert
+        $this->assertCount(0, $productConcreteCollectionResponseTransfer->getErrors());
+    }
+
+    /**
+     * The uuid is generated by the Propel `uuid` behavior on insert and is not mapped back onto the
+     * transfer the data helper returns, so it has to be read from the persisted row.
+     */
+    protected function findProductImageSetUuid(ProductImageSetTransfer $productImageSetTransfer): string
+    {
+        $productImageSetEntity = SpyProductImageSetQuery::create()
+            ->findOneByIdProductImageSet($productImageSetTransfer->getIdProductImageSetOrFail());
+
+        return (string)$productImageSetEntity?->getUuid();
+    }
+
+    protected function createRequestWithImageSetUuid(string $uuid, ?int $idProductConcrete): ProductConcreteCollectionRequestTransfer
+    {
+        return (new ProductConcreteCollectionRequestTransfer())
+            ->addProduct(
+                (new ProductConcreteTransfer())
+                    ->setSku(static::PRODUCT_SKU)
+                    ->setIdProductConcrete($idProductConcrete)
+                    ->addImageSet((new ProductImageSetTransfer())->setUuid($uuid)),
+            );
+    }
+}

@@ -11,18 +11,18 @@ use Generated\Shared\Transfer\LocaleTransfer;
 use Generated\Shared\Transfer\ProductImageSetCollectionTransfer;
 use Generated\Shared\Transfer\ProductImageSetTransfer;
 use Orm\Zed\ProductImage\Persistence\SpyProductImageSet;
-use Propel\Runtime\Collection\ObjectCollection;
+use Propel\Runtime\Collection\Collection;
 
 class ProductImageSetMapper
 {
     /**
-     * @param \Propel\Runtime\Collection\ObjectCollection<\Orm\Zed\ProductImage\Persistence\SpyProductImageSet> $productImageSetEntityCollection
+     * @param \Propel\Runtime\Collection\Collection<\Orm\Zed\ProductImage\Persistence\SpyProductImageSet> $productImageSetEntityCollection
      * @param \Generated\Shared\Transfer\ProductImageSetCollectionTransfer $productImageSetCollectionTransfer
      *
      * @return \Generated\Shared\Transfer\ProductImageSetCollectionTransfer
      */
     public function mapConcreteProductImageSetEntityCollectionToProductImageSetCollectionTransfer(
-        ObjectCollection $productImageSetEntityCollection,
+        Collection $productImageSetEntityCollection,
         ProductImageSetCollectionTransfer $productImageSetCollectionTransfer
     ): ProductImageSetCollectionTransfer {
         foreach ($productImageSetEntityCollection as $productImageSetEntity) {
@@ -35,13 +35,13 @@ class ProductImageSetMapper
     }
 
     /**
-     * @param \Propel\Runtime\Collection\ObjectCollection<\Orm\Zed\ProductImage\Persistence\SpyProductImageSet> $productImageSetEntityCollection
+     * @param \Propel\Runtime\Collection\Collection<\Orm\Zed\ProductImage\Persistence\SpyProductImageSet> $productImageSetEntityCollection
      * @param \Generated\Shared\Transfer\ProductImageSetCollectionTransfer $productImageSetCollectionTransfer
      *
      * @return \Generated\Shared\Transfer\ProductImageSetCollectionTransfer
      */
     public function mapAbstractProductImageSetEntityCollectionToProductImageSetCollectionTransfer(
-        ObjectCollection $productImageSetEntityCollection,
+        Collection $productImageSetEntityCollection,
         ProductImageSetCollectionTransfer $productImageSetCollectionTransfer
     ): ProductImageSetCollectionTransfer {
         foreach ($productImageSetEntityCollection as $productImageSetEntity) {
@@ -78,6 +78,12 @@ class ProductImageSetMapper
         $productImageSetTransfer = $productImageSetTransfer->fromArray($productImageSetEntity->toArray(), true);
         $productImageSetTransfer
             ->setIdProductAbstract($productImageSetEntity->getFkProductAbstract());
+
+        if ($productImageSetEntity->getFkLocale()) {
+            $productImageSetTransfer->setLocale(
+                (new LocaleTransfer())->fromArray($productImageSetEntity->getSpyLocale()->toArray(), true),
+            );
+        }
 
         return $productImageSetTransfer;
     }

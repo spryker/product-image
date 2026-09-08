@@ -29,6 +29,11 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 class ProductImageRepository extends AbstractRepository implements ProductImageRepositoryInterface
 {
     /**
+     * @uses \Orm\Zed\ProductImage\Persistence\Map\SpyProductImageSetTableMap::COL_UUID
+     */
+    protected const string COLUMN_UUID = 'uuid';
+
+    /**
      * @var string
      */
     protected const FK_PRODUCT_CONCRETE = 'fkProductConcrete';
@@ -178,6 +183,8 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
                 $productImageSetToProductImageEntity->getSpyProductImage(),
                 new ProductImageTransfer(),
             );
+            $productImageTransfer->setSortOrder($productImageSetToProductImageEntity->getSortOrder());
+
             $indexedProductImages[$productImageSetToProductImageEntity->getFkProductImageSet()][] = $productImageTransfer;
         }
 
@@ -208,6 +215,39 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
         }
 
         return $result;
+    }
+
+    /**
+     * @param array<int> $productIds
+     *
+     * @return array<int, list<string>>
+     */
+    public function getProductImageSetUuidsGroupedByIdProduct(array $productIds): array
+    {
+        if ($productIds === [] || !$this->isProductImageSetUuidSupported()) {
+            return [];
+        }
+
+        $productImageSetEntities = $this->getFactory()->createProductImageSetQuery()
+            ->filterByFkProduct_In($productIds)
+            ->find();
+
+        $productImageSetUuids = [];
+
+        foreach ($productImageSetEntities as $productImageSetEntity) {
+            $uuid = $productImageSetEntity->getUuid();
+
+            if ($uuid !== null) {
+                $productImageSetUuids[$productImageSetEntity->getFkProduct()][] = $uuid;
+            }
+        }
+
+        return $productImageSetUuids;
+    }
+
+    public function isProductImageSetUuidSupported(): bool
+    {
+        return SpyProductImageSetTableMap::getTableMap()->hasColumn(static::COLUMN_UUID);
     }
 
     /**
@@ -306,6 +346,8 @@ class ProductImageRepository extends AbstractRepository implements ProductImageR
             $productImageSetQuery,
             $productImageSetCriteriaTransfer->getSortCollection(),
         );
+
+        $productImageSetQuery->leftJoinWithSpyLocale();
 
         $paginationTransfer = $productImageSetCriteriaTransfer->getPagination();
         if ($paginationTransfer !== null) {

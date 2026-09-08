@@ -9,6 +9,7 @@
         <property name="idProduct" type="int"/>
         <property name="idProductAbstract" type="int"/>
         <property name="sku" type="string"/>
+        <property name="uuid" type="string" strict="true"/>
     </transfer>
 
     <transfer name="ProductImage">
@@ -26,9 +27,14 @@
         <property name="imageSets" type="ProductImageSet[]" singular="imageSet"/>
     </transfer>
 
+    <transfer name="ProductAbstractRelations" strict="true">
+        <property name="withImageSets" type="bool"/>
+    </transfer>
+
     <transfer name="ProductConcrete">
         <property name="imageSets" type="ProductImageSet[]" singular="imageSet"/>
         <property name="idProductConcrete" type="int"/>
+        <property name="sku" type="string"/>
     </transfer>
 
     <transfer name="Locale">
@@ -142,6 +148,23 @@
     <transfer name="ProductConcretePageSearch">
         <property name="images" type="array" singular="image"/>
         <property name="locale" type="string"/>
+    </transfer>
+
+    <transfer name="ProductAbstractCollection">
+    </transfer>
+
+    <transfer name="ProductAbstractCriteria" strict="true">
+    </transfer>
+
+    <transfer name="ProductConcreteCollectionRequest" strict="true">
+    </transfer>
+
+    <transfer name="ProductConcreteCollectionResponse" strict="true">
+    </transfer>
+
+    <transfer name="Error">
+        <property name="message" type="string"/>
+        <property name="entityIdentifier" type="string"/>
     </transfer>
 
 </transfers>

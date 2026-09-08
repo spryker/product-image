@@ -7,6 +7,8 @@
 
 namespace Spryker\Zed\ProductImage\Business\Model;
 
+use Generated\Shared\Transfer\LocaleConditionsTransfer;
+use Generated\Shared\Transfer\LocaleCriteriaTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
 use Generated\Shared\Transfer\ProductConcreteTransfer;
 use Generated\Shared\Transfer\ProductImageSetTransfer;
@@ -14,7 +16,9 @@ use Generated\Shared\Transfer\ProductImageTransfer;
 use Orm\Zed\ProductImage\Persistence\SpyProductImage;
 use Orm\Zed\ProductImage\Persistence\SpyProductImageSet;
 use Orm\Zed\ProductImage\Persistence\SpyProductImageSetToProductImage;
+use Spryker\Shared\Kernel\Transfer\Exception\RequiredTransferPropertyException;
 use Spryker\Zed\Kernel\Persistence\EntityManager\TransactionTrait;
+use Spryker\Zed\ProductImage\Dependency\Facade\ProductImageToLocaleInterface;
 use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
 
 class Writer implements WriterInterface
@@ -26,9 +30,14 @@ class Writer implements WriterInterface
      */
     protected $productImageQueryContainer;
 
-    public function __construct(ProductImageQueryContainerInterface $productImageContainer)
-    {
+    protected ProductImageToLocaleInterface $localeFacade;
+
+    public function __construct(
+        ProductImageQueryContainerInterface $productImageContainer,
+        ProductImageToLocaleInterface $localeFacade,
+    ) {
         $this->productImageQueryContainer = $productImageContainer;
+        $this->localeFacade = $localeFacade;
     }
 
     /**
@@ -286,6 +295,71 @@ class Writer implements WriterInterface
     }
 
     /**
+     * @param iterable<\Generated\Shared\Transfer\ProductImageSetTransfer> $imageSetTransfers
+     *
+     * @return array<string, \Generated\Shared\Transfer\LocaleTransfer>
+     */
+    protected function resolveLocalesForImageSets(iterable $imageSetTransfers): array
+    {
+        $localeNamesToResolve = [];
+
+        foreach ($imageSetTransfers as $imageSetTransfer) {
+            $locale = $imageSetTransfer->getLocale();
+
+            if ($locale !== null && $locale->getIdLocale() === null && $locale->getLocaleName() !== null) {
+                $localeNamesToResolve[$locale->getLocaleName()] = true;
+            }
+        }
+
+        if ($localeNamesToResolve === []) {
+            return [];
+        }
+
+        $localeCriteriaTransfer = (new LocaleCriteriaTransfer())
+            ->setLocaleConditions(
+                (new LocaleConditionsTransfer())->setLocaleNames(array_keys($localeNamesToResolve)),
+            );
+
+        $localeTransfersIndexedByName = [];
+
+        foreach ($this->localeFacade->getLocaleCollection($localeCriteriaTransfer) as $localeTransfer) {
+            $localeTransfersIndexedByName[$localeTransfer->getLocaleNameOrFail()] = $localeTransfer;
+        }
+
+        return $localeTransfersIndexedByName;
+    }
+
+    /**
+     * @param array<string, \Generated\Shared\Transfer\LocaleTransfer> $localeTransfersIndexedByName
+     *
+     * @throws \Spryker\Shared\Kernel\Transfer\Exception\RequiredTransferPropertyException
+     */
+    protected function resolveImageSetLocale(
+        ProductImageSetTransfer $imageSetTransfer,
+        array $localeTransfersIndexedByName,
+    ): void {
+        $locale = $imageSetTransfer->getLocale();
+
+        if ($locale === null || $locale->getIdLocale() !== null) {
+            return;
+        }
+
+        $localeName = $locale->getLocaleName();
+
+        if ($localeName === null) {
+            return;
+        }
+
+        if (!isset($localeTransfersIndexedByName[$localeName])) {
+            throw new RequiredTransferPropertyException(
+                sprintf('Locale with name "%s" not found.', $localeName),
+            );
+        }
+
+        $imageSetTransfer->setLocale($localeTransfersIndexedByName[$localeName]);
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\ProductImageSetTransfer $productImageSetTransfer
      *
      * @return \Generated\Shared\Transfer\ProductImageSetTransfer
@@ -335,6 +409,8 @@ class Writer implements WriterInterface
      */
     public function createProductAbstractImageSetCollection(ProductAbstractTransfer $productAbstractTransfer)
     {
+        $localeTransfersIndexedByName = $this->resolveLocalesForImageSets($productAbstractTransfer->getImageSets());
+
         foreach ($productAbstractTransfer->getImageSets() as $imageSetTransfer) {
             $imageSetTransfer->setIdProductAbstract(
                 $productAbstractTransfer
@@ -342,6 +418,7 @@ class Writer implements WriterInterface
                     ->getIdProductAbstract(),
             );
 
+            $this->resolveImageSetLocale($imageSetTransfer, $localeTransfersIndexedByName);
             $this->createProductImageSet($imageSetTransfer);
         }
 
@@ -355,6 +432,8 @@ class Writer implements WriterInterface
      */
     public function updateProductAbstractImageSetCollection(ProductAbstractTransfer $productAbstractTransfer)
     {
+        $localeTransfersIndexedByName = $this->resolveLocalesForImageSets($productAbstractTransfer->getImageSets());
+
         foreach ($productAbstractTransfer->getImageSets() as $imageSetTransfer) {
             $imageSetTransfer->setIdProductAbstract(
                 $productAbstractTransfer
@@ -362,6 +441,7 @@ class Writer implements WriterInterface
                     ->getIdProductAbstract(),
             );
 
+            $this->resolveImageSetLocale($imageSetTransfer, $localeTransfersIndexedByName);
             $this->updateProductImageSet($imageSetTransfer);
         }
 
@@ -377,6 +457,8 @@ class Writer implements WriterInterface
      */
     public function createProductConcreteImageSetCollection(ProductConcreteTransfer $productConcreteTransfer)
     {
+        $localeTransfersIndexedByName = $this->resolveLocalesForImageSets($productConcreteTransfer->getImageSets());
+
         foreach ($productConcreteTransfer->getImageSets() as $imageSetTransfer) {
             $imageSetTransfer->setIdProduct(
                 $productConcreteTransfer
@@ -384,6 +466,7 @@ class Writer implements WriterInterface
                     ->getIdProductConcrete(),
             );
 
+            $this->resolveImageSetLocale($imageSetTransfer, $localeTransfersIndexedByName);
             $this->createProductImageSet($imageSetTransfer);
         }
 
@@ -397,6 +480,8 @@ class Writer implements WriterInterface
      */
     public function updateProductConcreteImageSetCollection(ProductConcreteTransfer $productConcreteTransfer)
     {
+        $localeTransfersIndexedByName = $this->resolveLocalesForImageSets($productConcreteTransfer->getImageSets());
+
         foreach ($productConcreteTransfer->getImageSets() as $imageSetTransfer) {
             $imageSetTransfer->setIdProduct(
                 $productConcreteTransfer
@@ -404,6 +489,7 @@ class Writer implements WriterInterface
                     ->getIdProductConcrete(),
             );
 
+            $this->resolveImageSetLocale($imageSetTransfer, $localeTransfersIndexedByName);
             $this->updateProductImageSet($imageSetTransfer);
         }
 

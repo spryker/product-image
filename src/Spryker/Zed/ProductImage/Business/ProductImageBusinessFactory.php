@@ -9,6 +9,8 @@ namespace Spryker\Zed\ProductImage\Business;
 
 use Exception;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
+use Spryker\Zed\ProductImage\Business\Expander\ProductAbstractCollectionExpander;
+use Spryker\Zed\ProductImage\Business\Expander\ProductAbstractCollectionExpanderInterface;
 use Spryker\Zed\ProductImage\Business\Expander\ProductConcretePageSearchExpander;
 use Spryker\Zed\ProductImage\Business\Expander\ProductConcretePageSearchExpanderInterface;
 use Spryker\Zed\ProductImage\Business\Expander\ProductImageSetExpander;
@@ -18,6 +20,8 @@ use Spryker\Zed\ProductImage\Business\Expander\ProductPageSearchExpanderInterfac
 use Spryker\Zed\ProductImage\Business\Model\ProductImageSetCombiner;
 use Spryker\Zed\ProductImage\Business\Model\Reader;
 use Spryker\Zed\ProductImage\Business\Model\Writer;
+use Spryker\Zed\ProductImage\Business\Product\Validator\ProductImageSetValidator;
+use Spryker\Zed\ProductImage\Business\Product\Validator\ProductImageSetValidatorInterface;
 use Spryker\Zed\ProductImage\Business\Reader\GlossaryReader;
 use Spryker\Zed\ProductImage\Business\Reader\GlossaryReaderInterface;
 use Spryker\Zed\ProductImage\Business\Reader\ProductImageBulkReader;
@@ -64,6 +68,7 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
     {
         return new Writer(
             $this->getQueryContainer(),
+            $this->getLocaleFacade(),
         );
     }
 
@@ -98,6 +103,13 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
     {
         return new ProductImageSetReader(
             $this->getRepository(),
+        );
+    }
+
+    public function createProductAbstractCollectionExpander(): ProductAbstractCollectionExpanderInterface
+    {
+        return new ProductAbstractCollectionExpander(
+            $this->createProductImageSetReader(),
         );
     }
 
@@ -182,5 +194,10 @@ class ProductImageBusinessFactory extends AbstractBusinessFactory
         if (!$this->getConfig()->isProductImageAlternativeTextEnabled()) {
             throw new Exception('ProductImageAlternativeText is not enabled. Enable it in the module shared config first.');
         }
+    }
+
+    public function createProductImageSetValidator(): ProductImageSetValidatorInterface
+    {
+        return new ProductImageSetValidator($this->getRepository());
     }
 }
