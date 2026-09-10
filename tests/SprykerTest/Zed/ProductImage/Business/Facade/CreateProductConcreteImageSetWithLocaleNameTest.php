@@ -32,7 +32,7 @@ class CreateProductConcreteImageSetWithLocaleNameTest extends AbstractProductIma
     public function testCreateProductConcreteImageSetCollectionResolvesLocaleByName(): void
     {
         // Arrange
-        $localeTransfer = $this->tester->haveLocale([LocaleTransfer::LOCALE_NAME => static::LOCALE_NAME_FOR_TEST]);
+        $localeTransfer = $this->getAvailableLocaleTransfer();
         $productConcreteTransfer = $this->createProductConcreteTransfer();
 
         $productImageTransfer = (new ProductImageTransfer())
@@ -43,7 +43,7 @@ class CreateProductConcreteImageSetWithLocaleNameTest extends AbstractProductIma
             ->setName(static::SET_NAME)
             ->setIdProduct($this->productConcreteEntity->getIdProduct())
             ->setLocale(
-                (new LocaleTransfer())->setLocaleName(static::LOCALE_NAME_FOR_TEST),
+                (new LocaleTransfer())->setLocaleName($localeTransfer->getLocaleNameOrFail()),
             )
             ->addProductImage($productImageTransfer);
 
@@ -181,5 +181,12 @@ class CreateProductConcreteImageSetWithLocaleNameTest extends AbstractProductIma
 
         $this->assertNotNull($productImageSetEntity, 'Image set should be persisted when all image sets already have idLocale.');
         $this->assertSame($localeTransfer->getIdLocale(), $productImageSetEntity->getFkLocale());
+    }
+
+    protected function getAvailableLocaleTransfer(): LocaleTransfer
+    {
+        $localeFacade = $this->tester->getLocator()->locale()->facade();
+
+        return $localeFacade->getLocale((string)current($localeFacade->getAvailableLocales()));
     }
 }
