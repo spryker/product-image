@@ -138,6 +138,7 @@
 
     <transfer name="LocaleConditions">
         <property name="storeNames" type="string[]" singular="storeName"/>
+        <property name="localeNames" type="string[]" singular="localeName"/>
     </transfer>
 
     <transfer name="ProductPageSearch">
@@ -151,15 +152,19 @@
     </transfer>
 
     <transfer name="ProductAbstractCollection">
+        <property name="productAbstracts" type="ProductAbstract[]" singular="productAbstract"/>
     </transfer>
 
     <transfer name="ProductAbstractCriteria" strict="true">
+        <property name="productAbstractRelations" type="ProductAbstractRelations"/>
     </transfer>
 
     <transfer name="ProductConcreteCollectionRequest" strict="true">
+        <property name="products" type="ProductConcrete[]" singular="product"/>
     </transfer>
 
     <transfer name="ProductConcreteCollectionResponse" strict="true">
+        <property name="errors" type="Error[]" singular="error"/>
     </transfer>
 
     <transfer name="Error">
